@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -45,7 +44,7 @@ public class ProfileFragment extends Fragment {
     TextView textViewProfileTabSettingsText;
     TextView textViewProfileTabAccountText;
     TextView textViewProfileTabPrivacyText;
-    TextView textViewProfileTabPremiumText;
+
 
     /**
      * @param inflater
@@ -69,7 +68,7 @@ public class ProfileFragment extends Fragment {
         textViewProfileTabSettingsText = view.findViewById(R.id.textViewProfileTabSettingsText);
         textViewProfileTabAccountText = view.findViewById(R.id.textViewProfileTabAccountText);
         textViewProfileTabPrivacyText = view.findViewById(R.id.textViewProfileTabPrivacyText);
-        textViewProfileTabPremiumText = view.findViewById(R.id.textViewProfileTabPremiumText);
+
 
         firebaseFirestore = FirebaseFirestore.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
@@ -141,13 +140,6 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ProfileEditActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        textViewProfileTabPremiumText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Under development", Toast.LENGTH_SHORT).show();
             }
         });
 

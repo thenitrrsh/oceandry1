@@ -1,4 +1,4 @@
-package com.naeemdev.realtimechatwithfirebase.ExtaraUtil;
+package com.naeemdev.realtimechatwithfirebase.model;
 
 import java.util.Date;
 

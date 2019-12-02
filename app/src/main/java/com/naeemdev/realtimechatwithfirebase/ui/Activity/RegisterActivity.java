@@ -42,8 +42,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.nabinbhandari.android.permissions.PermissionHandler;
 import com.nabinbhandari.android.permissions.Permissions;
-import com.naeemdev.realtimechatwithfirebase.ExtaraUtil.DateClass;
 import com.naeemdev.realtimechatwithfirebase.R;
+import com.naeemdev.realtimechatwithfirebase.model.DateClass;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
