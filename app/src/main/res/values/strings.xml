@@ -32,4 +32,8 @@
     <string name="km">km</string>
     <string name="swipmatchdate">Swipe. Match. Date.</string>
     <string name="msg_swip">We couldn\'t find any user matching your search crteria. Try again later.</string>
+    <string name="g">g</string>
+    <string name="about">about</string>
+    <string name="discoveruser">Discover new users</string>
+    <string name="msguser">We couldn\'t find any user matching your search criteria. Try again later.</string>
 </resources>
