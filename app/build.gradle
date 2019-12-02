@@ -10,6 +10,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -47,5 +48,7 @@ dependencies {
     implementation 'androidx.multidex:multidex:2.0.1'
     //circleimageview
     implementation 'de.hdodenhof:circleimageview:3.0.1'
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }
 apply plugin: 'com.google.gms.google-services'
