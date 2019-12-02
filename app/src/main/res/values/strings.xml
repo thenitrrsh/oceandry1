@@ -27,4 +27,9 @@
     <string name="_0">0</string>
     <string name="sendnewmessage">Send new messages</string>
     <string name="msg">We couldn\'t find any messages with your matches. Send messages to chat with them here.</string>
+    <string name="age">age</string>
+    <string name="city">city</string>
+    <string name="km">km</string>
+    <string name="swipmatchdate">Swipe. Match. Date.</string>
+    <string name="msg_swip">We couldn\'t find any user matching your search crteria. Try again later.</string>
 </resources>
