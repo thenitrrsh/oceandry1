@@ -11,4 +11,9 @@
 
     <color name="colorFacebook">#3B5999</color>
     <color name="colorBlack">#000000</color>
+    <color name="colorGrey">#e8e8e8</color>
+    <color name="colorRed">#d81b60</color>
+    <color name="colorViolet">#8e24aa</color>
+    <color name="colorPinkLight">#fce4ec</color>
+    <color name="colorPinkDark">#c2185b</color>
 </resources>
