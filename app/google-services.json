@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "445218290816",
+    "firebase_url": "https://chatingapp-f5e57.firebaseio.com",
+    "project_id": "chatingapp-f5e57",
+    "storage_bucket": "chatingapp-f5e57.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:445218290816:android:41aaafbfc6349c86767a65",
+        "android_client_info": {
+          "package_name": "com.naeemdev.realtimechatwithfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "445218290816-i5003qhlfngd4nl4u1uvklin5kuuomvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsxpTfM2N8JPy0m6vBFhfR_kK0ngHaE2c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "445218290816-i5003qhlfngd4nl4u1uvklin5kuuomvn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
