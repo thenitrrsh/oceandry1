@@ -36,4 +36,13 @@
     <string name="about">about</string>
     <string name="discoveruser">Discover new users</string>
     <string name="msguser">We couldn\'t find any user matching your search criteria. Try again later.</string>
+    <string name="start">start</string>
+    <string name="send_message">send message</string>
+    <string name="name">name</string>
+    <string name="status">status</string>
+    <string name="favioruser">Favorite User</string>
+    <string name="unmatcheduser">Unmatch User</string>
+    <string name="deletechate">Delete Chat</string>
+    <string name="blockuser">Block User</string>
+    <string name="reportuser">Report User</string>
 </resources>
