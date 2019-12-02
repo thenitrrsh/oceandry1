@@ -21,4 +21,10 @@
     <string name="account">ACCOUNT</string>
     <string name="profile">PROFILE</string>
     <string name="myfiendplus">MY FIREDATE PLUS</string>
+    <string name="full_name">full name</string>
+    <string name="message">message</string>
+    <string name="date">date</string>
+    <string name="_0">0</string>
+    <string name="sendnewmessage">Send new messages</string>
+    <string name="msg">We couldn\'t find any messages with your matches. Send messages to chat with them here.</string>
 </resources>
