@@ -128,7 +128,7 @@ public class MessageActivity extends AppCompatActivity {
             }
         });
 
- 
+
         recyclerViewMessageView = findViewById(R.id.recyclerViewMessageView);
         recyclerViewMessageView.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
