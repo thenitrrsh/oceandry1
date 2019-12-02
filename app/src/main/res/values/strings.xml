@@ -3,4 +3,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loginwithfacebook">Log in With Facebook</string>
+    <string name="facebook_app_id">331875347481475</string>
+    <string name="fb_login_protocol_scheme">fb331875347481475</string>
+    <string name="email">Email</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
 </resources>

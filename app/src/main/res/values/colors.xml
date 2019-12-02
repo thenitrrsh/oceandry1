@@ -7,4 +7,8 @@
     <color name="colorBlue">#0084FD</color>
     <color name="colorGreyDark">#999</color>
     <color name="colorWhite">#fff</color>
+    <color name="colorBlackAlpha">#80000000</color>
+
+    <color name="colorFacebook">#3B5999</color>
+    <color name="colorBlack">#000000</color>
 </resources>
