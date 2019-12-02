@@ -15,4 +15,10 @@
     <string name="female">female</string>
     <string name="firstname">First Name</string>
     <string name="birthday">birthday</string>
+    <string name="username">username</string>
+    <string name="location">location</string>
+    <string name="setting">SETTINGS</string>
+    <string name="account">ACCOUNT</string>
+    <string name="profile">PROFILE</string>
+    <string name="myfiendplus">MY FIREDATE PLUS</string>
 </resources>

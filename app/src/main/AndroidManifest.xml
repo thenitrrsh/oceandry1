@@ -18,7 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.Activity.RegisterActivity"></activity>
+        <activity android:name=".ui.Activity.ProfileEditActivity"></activity>
+        <activity android:name=".ui.Activity.SettingsActivity" />
+        <activity android:name=".ui.Activity.ProfileActivity" />
+        <activity android:name=".ui.Activity.RegisterActivity" />
         <activity android:name=".ui.Activity.LoginActivity" />
         <activity android:name=".ui.Activity.RemindActivity" />
         <activity android:name=".ui.Activity.StartActivity" />
