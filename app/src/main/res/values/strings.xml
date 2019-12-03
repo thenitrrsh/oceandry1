@@ -59,6 +59,7 @@
     <string name="msg_user">Users who visits your profile will show up here. You can see who is into you.</string>
     <string name="fav_empty">Favorites is empty</string>
     <string name="msg_fav">Users you mark as favorite will show up here. You can save your date here.</string>
+    <string name="msg_matchempty">Get Matching</string>
     <string-array name="string_array_user_report">
         <item>Fake Profile</item>
         <item>Inappropritae Photos</item>
