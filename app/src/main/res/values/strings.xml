@@ -114,6 +114,8 @@
     <string name="msg_underage">User is Underage</string>
     <string name="msg_otherreson">Other Reason</string>
     <string name="repor">Report</string>
+    <string name="msg_completeprofile">Complete Profile</string>
+    <string name="finished">Finish</string>
 
     <string-array name="string_array_user_report">
         <item>Fake Profile</item>
