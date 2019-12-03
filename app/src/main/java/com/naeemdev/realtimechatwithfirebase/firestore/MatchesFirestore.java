@@ -1,4 +1,4 @@
-package com.naeemdev.realtimechatwithfirebase.model;
+package com.naeemdev.realtimechatwithfirebase.firestore;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,23 +21,28 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.naeemdev.realtimechatwithfirebase.R;
+import com.naeemdev.realtimechatwithfirebase.model.MatchesClass;
+import com.naeemdev.realtimechatwithfirebase.model.ProfileClass;
 import com.squareup.picasso.Picasso;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.annotation.Nullable;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChatsFirestore extends FirestoreRecyclerAdapter<MessageClass, ChatsFirestore.ChatHolder> {
+public class MatchesFirestore extends FirestoreRecyclerAdapter<MatchesClass, MatchesFirestore.MatchesHolder> {
 
 
     private OnItemClickListener listener;
 
-    public ChatsFirestore(@NonNull FirestoreRecyclerOptions<MessageClass> options) {
+    public MatchesFirestore(@NonNull FirestoreRecyclerOptions<MatchesClass> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final ChatHolder holder, int position, @NonNull final MessageClass model) {
+    protected void onBindViewHolder(@NonNull final MatchesHolder holder, int position, @NonNull final MatchesClass model) {
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -49,41 +54,32 @@ public class ChatsFirestore extends FirestoreRecyclerAdapter<MessageClass, Chats
                         if (queryDocumentSnapshots != null) {
                             for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
                                 ProfileClass profileClass = doc.getDocument().toObject(ProfileClass.class);
-                                if (profileClass.getUser_uid().equals(model.getUser_receiver())) {
-                                    holder.textViewChatsItemChatsName.setText(profileClass.getUser_name());
-                                    if (profileClass.getUser_image().equals("image")) {
-                                        holder.roundedImageViewChatsItemChatsImage.setImageResource(R.drawable.profile_image);
+                                if (profileClass.getUser_uid().equals(model.getUser_matches())) {
+                                    holder.textViewMatchesItemMatchesName.setText(profileClass.getUser_name());
+
+                                    if (profileClass.getUser_thumb().equals("thumb")) {
+                                        holder.roundedImageViewMatchesItemMatchesImage.setImageResource(R.drawable.profile_image);
                                     } else {
-                                        Picasso.get().load(profileClass.getUser_image()).into(holder.roundedImageViewChatsItemChatsImage);
+                                        Picasso.get().load(profileClass.getUser_thumb()).into(holder.roundedImageViewMatchesItemMatchesImage);
                                     }
                                 }
                             }
                         }
-
                     }
                 });
 
+        SimpleDateFormat sfd = new SimpleDateFormat("d MMMM yyyy, hh:mm a");
+        String x = sfd.format(new Date(model.getUser_matched().toString()));
 
-        holder.textViewChatsItemChatsMessage.setText(model.getUser_message());
-
-        if (!model.getUser_unread().equals("0")) {
-            holder.textViewChatsItemChatsUnread.setVisibility(View.VISIBLE);
-        } else {
-            holder.textViewChatsItemChatsUnread.setVisibility(View.GONE);
-        }
-
-        holder.textViewChatsItemChatsUnread.setText(model.getUser_unread());
-
-        holder.RelativeTimeChatsItemChatsDate.setReferenceTime(model.getUser_datesent().getTime());
+        holder.RelativeTimeMatchesItemMatchesDate.setReferenceTime(model.getUser_matched().getTime());
 
     }
 
     @NonNull
     @Override
-    public ChatHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.chats_item, viewGroup, false);
-        return new ChatHolder(v);
-
+    public MatchesHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.matches_item, viewGroup, false);
+        return new MatchesHolder(v);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -94,24 +90,24 @@ public class ChatsFirestore extends FirestoreRecyclerAdapter<MessageClass, Chats
         void onItemClick(DocumentSnapshot documentSnapshot, int position);
     }
 
-    class ChatHolder extends RecyclerView.ViewHolder {
+    class MatchesHolder extends RecyclerView.ViewHolder {
 
-        TextView textViewChatsItemChatsName;
-        TextView textViewChatsItemChatsMessage;
-        TextView textViewChatsItemChatsUnread;
-        RelativeTimeTextView RelativeTimeChatsItemChatsDate;
-        RoundedImageView roundedImageViewChatsItemChatsImage;
-        CircleImageView circleImageViewChatsItemChatsOnline;
-        CircleImageView circleImageViewChatsItemChatsOffline;
+        TextView textViewMatchesItemMatchesName;
+        RoundedImageView roundedImageViewMatchesItemMatchesImage;
+        CircleImageView circleImageViewUsersItemUsersOnline;
+        CircleImageView circleImageViewUsersItemUsersOffline;
 
-        public ChatHolder(@NonNull View itemView) {
+        RelativeTimeTextView RelativeTimeMatchesItemMatchesDate;
+
+
+        public MatchesHolder(@NonNull View itemView) {
             super(itemView);
 
-            textViewChatsItemChatsName = itemView.findViewById(R.id.textViewChatsItemChatsName);
-            textViewChatsItemChatsMessage = itemView.findViewById(R.id.textViewChatsItemChatsMessage);
-            textViewChatsItemChatsUnread = itemView.findViewById(R.id.textViewChatsItemChatsUnread);
-            RelativeTimeChatsItemChatsDate = itemView.findViewById(R.id.RelativeTimeChatsItemChatsDate); //Or just use Butterknife!
-            roundedImageViewChatsItemChatsImage = itemView.findViewById(R.id.roundedImageViewChatsItemChatsImage);
+            textViewMatchesItemMatchesName = itemView.findViewById(R.id.textViewMatchesItemMatchesName);
+            roundedImageViewMatchesItemMatchesImage = itemView.findViewById(R.id.roundedImageViewMatchesItemMatchesImage);
+            circleImageViewUsersItemUsersOnline = itemView.findViewById(R.id.circleImageViewUsersItemUsersOnline);
+            circleImageViewUsersItemUsersOffline = itemView.findViewById(R.id.circleImageViewUsersItemUsersOffline);
+            RelativeTimeMatchesItemMatchesDate = itemView.findViewById(R.id.RelativeTimeMatchesItemMatchesDate);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -124,4 +120,5 @@ public class ChatsFirestore extends FirestoreRecyclerAdapter<MessageClass, Chats
             });
         }
     }
+
 }

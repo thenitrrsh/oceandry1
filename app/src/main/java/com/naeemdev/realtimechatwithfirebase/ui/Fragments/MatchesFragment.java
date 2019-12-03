@@ -20,8 +20,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.naeemdev.realtimechatwithfirebase.CustomAdatpter.MatchesFirestore;
 import com.naeemdev.realtimechatwithfirebase.R;
+import com.naeemdev.realtimechatwithfirebase.firestore.MatchesFirestore;
 import com.naeemdev.realtimechatwithfirebase.model.MatchesClass;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.ProfileActivity;
 
@@ -40,6 +40,7 @@ public class MatchesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_matches, container, false);
+        recyclerViewMatchesView = view.findViewById(R.id.recyclerViewMatchesView);
         MatchesRecyclerView();
 
 

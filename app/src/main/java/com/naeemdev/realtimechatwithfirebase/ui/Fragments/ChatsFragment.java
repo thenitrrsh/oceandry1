@@ -21,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.ChatsFirestore;
+import com.naeemdev.realtimechatwithfirebase.firestore.ChatsFirestore;
 import com.naeemdev.realtimechatwithfirebase.model.MessageClass;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.MessageActivity;
 
