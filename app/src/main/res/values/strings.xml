@@ -116,6 +116,7 @@
     <string name="repor">Report</string>
     <string name="msg_completeprofile">Complete Profile</string>
     <string name="finished">Finish</string>
+    <string name="msg_login">By logging in you agree to FireDate\'s Terms of Service and Privacy Policy.</string>
 
     <string-array name="string_array_user_report">
         <item>Fake Profile</item>

@@ -18,48 +18,59 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.Activity.PasswordActivity"></activity>
-        <activity android:name=".ui.Activity.SupportActivity" />
-        <activity android:name=".ui.Activity.NotificationActivity" />
-        <activity android:name=".ui.Activity.AccountActivity" />
-        <activity android:name=".ui.Activity.ReportActivity" />
-        <activity android:name=".ui.Activity.ProfileEditActivity" />
-        <activity android:name=".ui.Activity.SettingsActivity" />
-        <activity android:name=".ui.Activity.ProfileActivity" />
-        <activity android:name=".ui.Activity.RegisterActivity" />
-        <activity android:name=".ui.Activity.LoginActivity" />
-        <activity android:name=".ui.Activity.RemindActivity" />
-        <activity android:name=".ui.Activity.StartActivity" />
-        <activity android:name=".ui.Activity.MessageActivity" />
-        <activity android:name=".ui.Activity.AccountsActivity" />
-        <activity android:name=".ui.Activity.MainActivity">
+        <activity
+            android:name=".ui.Activity.PasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.SupportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.NotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.AccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.ReportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.ProfileEditActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.RemindActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.StartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.MessageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.AccountsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.Activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-
-        <activity
-            android:name="com.facebook.FacebookActivity"
-            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name" />
-        <activity
-            android:name="com.facebook.CustomTabActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="@string/fb_login_protocol_scheme" />
-            </intent-filter>
-        </activity>
 
         <service android:name=".service.ServiceClass" />
     </application>

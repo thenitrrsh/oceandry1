@@ -46,7 +46,6 @@ import com.naeemdev.realtimechatwithfirebase.R;
 import com.naeemdev.realtimechatwithfirebase.model.DateClass;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -239,12 +238,23 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
 
     }
 
+    /**
+     * @param view
+     */
     public void radioButtonRegisterGender(View view) {
         int radioId = radioGroupRegisterGender.getCheckedRadioButtonId();
         radioButtonRegisterGender = findViewById(radioId);
 
     }
 
+    /**
+     * response after date selection
+     *
+     * @param view       date picker
+     * @param year       year
+     * @param month      month
+     * @param dayOfMonth day
+     */
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar calendar = Calendar.getInstance();
@@ -252,8 +262,8 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         calendar.set(Calendar.MONTH, month);
         calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
 
-        SimpleDateFormat format = new SimpleDateFormat("dd-MM-YYYY");
-        String strDate = format.format(calendar.getTime());
+        //SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        String strDate = dayOfMonth + "-"+month+"-"+year+"";
 
 
         if (year > 2000) {
@@ -269,6 +279,10 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     }
 
 
+    /**
+     * @param stringDateUser
+     * @return
+     */
     private String AgeUser(String stringDateUser) {
 
         String[] arrayDateUser = stringDateUser.split("-");
@@ -295,6 +309,10 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     }
 
 
+    /**
+     * check location permision Granted or not if its Granted than  get user current location else again check lotion
+     * permission
+     */
     private void LocationPremissionCheck() {
 
         String[] permissions = {Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION};
@@ -318,6 +336,10 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     }
 
 
+    /**
+     * @param locationLatitude  user current lat
+     * @param locationLongitude user current long
+     */
     private void LocationRetreive(Double locationLatitude, Double locationLongitude) {
         try {
             Geocoder geocoder = new Geocoder(this, Locale.getDefault());
@@ -364,6 +386,9 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         }
     }
 
+    /**
+     *  get  user location
+     */
     private void LocationRequest() {
 
 
@@ -430,6 +455,9 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
     }
 
 
+    /**
+     * check Gps enable or not
+     */
     private void GPSLocationServiceCheck() {
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 

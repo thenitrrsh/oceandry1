@@ -70,15 +70,6 @@
                     android:src="@drawable/swipe_like" />
 
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imageViewProfileViewLovesBoost"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_45sdp"
-                    android:layout_weight="1"
-                    android:elevation="@dimen/_6sdp"
-                    android:paddingBottom="@dimen/_10sdp"
-                    android:src="@drawable/swipe_boost" />
-
 
             </LinearLayout>
 

@@ -64,7 +64,7 @@ public class SwipeFragment extends Fragment implements CardStackListener {
     CircleImageView imageViewProfileViewLovesNope;
     CircleImageView imageViewProfileViewLovesSuper;
     CircleImageView imageViewProfileViewLovesLike;
-    CircleImageView imageViewProfileViewLovesBoost;
+
     CardStackLayoutManager manager;
     CardStackView cardStackView;
     int intSwipePositionFirst;
@@ -116,7 +116,6 @@ public class SwipeFragment extends Fragment implements CardStackListener {
         imageViewProfileViewLovesNope = view.findViewById(R.id.imageViewProfileViewLovesNope);
         imageViewProfileViewLovesSuper = view.findViewById(R.id.imageViewProfileViewLovesSuper);
         imageViewProfileViewLovesLike = view.findViewById(R.id.imageViewProfileViewLovesLike);
-        imageViewProfileViewLovesBoost = view.findViewById(R.id.imageViewProfileViewLovesBoost);
 
         linearLayoutSwipeButtons = view.findViewById(R.id.linearLayoutSwipeButtons);
         linearLayoutSwipeButtons.setVisibility(View.GONE);
@@ -201,12 +200,6 @@ public class SwipeFragment extends Fragment implements CardStackListener {
             }
         });
 
-        imageViewProfileViewLovesBoost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "Under development!", Toast.LENGTH_SHORT).show();
-            }
-        });
 
 
         return view;

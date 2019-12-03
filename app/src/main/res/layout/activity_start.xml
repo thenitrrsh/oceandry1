@@ -33,16 +33,6 @@
         android:padding="20dp">
 
 
-        <Button
-            android:id="@+id/buttonStartFacebook"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/button_capsule"
-            android:backgroundTint="@color/colorFacebook"
-            android:text="@string/loginwithfacebook"
-            android:textColor="@color/colorWhite"
-            android:textSize="@dimen/_15ssp" />
 
         <Button
             android:id="@+id/buttonStartEmail"
@@ -59,9 +49,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="40dp"
-            android:paddingRight="40dp"
-            android:text="By logging in you agree to FireDate's Terms of Service and Privacy Policy."
+            android:paddingLeft="@dimen/_40sdp"
+            android:paddingRight="@dimen/_40sdp"
+            android:text="@string/msg_login"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="12sp" />
