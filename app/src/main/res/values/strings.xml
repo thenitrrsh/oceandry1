@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RealtimeChatwithfirebase</string>
+    <string name="app_name">My Chat App</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -94,6 +94,15 @@
     <string name="new_supperprofilelike">New super likes</string>
     <string name="new_newprofilevisit">New profile visits</string>
     <string name="new_feedfollower">New Feeds Followers</string>
+    <string name="msg_support">Because we value all your ideas and we want to offer you the best. What is your impression so far?</string>
+    <string name="difficulttouse">The application is very difficult to use</string>
+    <string name="notmakeanyfriendsofar">I couldn\'t make any friends so far</string>
+    <string name="msg_tooslow">It\'s too slow or freezes at times</string>
+    <string name="msg_unconfortable">I feel uncomfortable about notifications</string>
+    <string name="msg_liketheapp">I like the app and enjoying it so far</string>
+    <string name="msg_howweimporve">How can we improve?</string>
+    <string name="msg_youridea">Tell us your idea, error or suggestion</string>
+    <string name="send">Send</string>
 
     <string-array name="string_array_user_report">
         <item>Fake Profile</item>
