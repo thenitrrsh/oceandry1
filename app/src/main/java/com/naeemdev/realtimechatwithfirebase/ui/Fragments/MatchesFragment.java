@@ -22,7 +22,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.naeemdev.realtimechatwithfirebase.R;
 import com.naeemdev.realtimechatwithfirebase.firestore.MatchesFirestore;
-import com.naeemdev.realtimechatwithfirebase.model.MatchesClass;
+import com.naeemdev.realtimechatwithfirebase.model.Matches_DataModel;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.ProfileActivity;
 
 public class MatchesFragment extends Fragment {
@@ -84,8 +84,8 @@ public class MatchesFragment extends Fragment {
                 .collection("matches")
                 .orderBy("user_matched", Query.Direction.DESCENDING);
 
-        FirestoreRecyclerOptions<MatchesClass> options = new FirestoreRecyclerOptions.Builder<MatchesClass>()
-                .setQuery(query, MatchesClass.class)
+        FirestoreRecyclerOptions<Matches_DataModel> options = new FirestoreRecyclerOptions.Builder<Matches_DataModel>()
+                .setQuery(query, Matches_DataModel.class)
                 .build();
 
         matchesFirestore = new MatchesFirestore(options);
@@ -97,12 +97,12 @@ public class MatchesFragment extends Fragment {
         matchesFirestore.setOnItemClickListener(new MatchesFirestore.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                final MatchesClass matchesClass = documentSnapshot.toObject(MatchesClass.class);
+                final Matches_DataModel matchesDataModel = documentSnapshot.toObject(Matches_DataModel.class);
                 String id = documentSnapshot.getId();
                 String path = documentSnapshot.getReference().getPath();
 
                 final Intent intent = new Intent(getContext(), ProfileActivity.class);
-                intent.putExtra("user_uid", matchesClass.getUser_matches());
+                intent.putExtra("user_uid", matchesDataModel.getUser_matches());
                 startActivity(intent);
             }
         });

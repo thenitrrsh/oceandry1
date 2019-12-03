@@ -2,15 +2,15 @@ package com.naeemdev.realtimechatwithfirebase.model;
 
 import java.util.Date;
 
-public class MatchesClass {
+public class Matches_DataModel {
 
     String user_matches;
     Date user_matched;
 
-    public MatchesClass() {
+    public Matches_DataModel() {
     }
 
-    public MatchesClass(String user_matches, Date user_matched) {
+    public Matches_DataModel(String user_matches, Date user_matched) {
         this.user_matches = user_matches;
         this.user_matched = user_matched;
     }

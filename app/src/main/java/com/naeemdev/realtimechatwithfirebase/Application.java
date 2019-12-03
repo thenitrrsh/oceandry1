@@ -30,7 +30,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.naeemdev.realtimechatwithfirebase.model.ChatUserClass;
+import com.naeemdev.realtimechatwithfirebase.model.ChatUser_DataModel;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.AccountsActivity;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.MainActivity;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.MessageActivity;
@@ -542,26 +542,26 @@ public class Application extends android.app.Application {
                                 for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
                                     if (doc.getType() == DocumentChange.Type.ADDED) {
 
-                                        ChatUserClass chatUserClass = doc.getDocument().toObject(ChatUserClass.class);
+                                        ChatUser_DataModel chatUserDataModel = doc.getDocument().toObject(ChatUser_DataModel.class);
 
-                                        if (!chatUserClass.getUser_unread().equals("0")) {
+                                        if (!chatUserDataModel.getUser_unread().equals("0")) {
 
-                                            String user_message = chatUserClass.getUser_message();
-                                            String user_receiver = chatUserClass.getUser_receiver();
-                                            String user_unread_new = chatUserClass.getUser_unread();
+                                            String user_message = chatUserDataModel.getUser_message();
+                                            String user_receiver = chatUserDataModel.getUser_receiver();
+                                            String user_unread_new = chatUserDataModel.getUser_unread();
 
                                             CheckNotificationsChats(currentUser, user_message, user_receiver);
                                         }
                                     }
                                     if (doc.getType() == DocumentChange.Type.MODIFIED) {
 
-                                        ChatUserClass chatUserClass = doc.getDocument().toObject(ChatUserClass.class);
+                                        ChatUser_DataModel chatUserDataModel = doc.getDocument().toObject(ChatUser_DataModel.class);
 
-                                        if (!chatUserClass.getUser_unread().equals("0")) {
+                                        if (!chatUserDataModel.getUser_unread().equals("0")) {
 
-                                            String user_message = chatUserClass.getUser_message();
-                                            String user_receiver = chatUserClass.getUser_receiver();
-                                            String user_unread_new = chatUserClass.getUser_unread();
+                                            String user_message = chatUserDataModel.getUser_message();
+                                            String user_receiver = chatUserDataModel.getUser_receiver();
+                                            String user_unread_new = chatUserDataModel.getUser_unread();
 
 
                                             CheckNotificationsChats(currentUser, user_message, user_receiver);

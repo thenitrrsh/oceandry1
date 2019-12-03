@@ -1,14 +1,14 @@
 package com.naeemdev.realtimechatwithfirebase.model;
 
-public class BlockClass {
+public class Block_DataModel {
 
     String user_block;
 
-    public BlockClass() {
+    public Block_DataModel() {
 
     }
 
-    public BlockClass(String user_block) {
+    public Block_DataModel(String user_block) {
         this.user_block = user_block;
     }
 

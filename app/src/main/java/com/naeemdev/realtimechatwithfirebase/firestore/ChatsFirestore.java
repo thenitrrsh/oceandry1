@@ -21,25 +21,25 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.MessageClass;
-import com.naeemdev.realtimechatwithfirebase.model.ProfileClass;
+import com.naeemdev.realtimechatwithfirebase.model.Message_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Profile_DataModel;
 import com.squareup.picasso.Picasso;
 
 import javax.annotation.Nullable;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class ChatsFirestore extends FirestoreRecyclerAdapter<MessageClass, ChatsFirestore.ChatHolder> {
+public class ChatsFirestore extends FirestoreRecyclerAdapter<Message_DataModel, ChatsFirestore.ChatHolder> {
 
 
     private OnItemClickListener listener;
 
-    public ChatsFirestore(@NonNull FirestoreRecyclerOptions<MessageClass> options) {
+    public ChatsFirestore(@NonNull FirestoreRecyclerOptions<Message_DataModel> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final ChatHolder holder, int position, @NonNull final MessageClass model) {
+    protected void onBindViewHolder(@NonNull final ChatHolder holder, int position, @NonNull final Message_DataModel model) {
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -50,13 +50,13 @@ public class ChatsFirestore extends FirestoreRecyclerAdapter<MessageClass, Chats
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         if (queryDocumentSnapshots != null) {
                             for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
-                                ProfileClass profileClass = doc.getDocument().toObject(ProfileClass.class);
-                                if (profileClass.getUser_uid().equals(model.getUser_receiver())) {
-                                    holder.textViewChatsItemChatsName.setText(profileClass.getUser_name());
-                                    if (profileClass.getUser_image().equals("image")) {
+                                Profile_DataModel profileDataModel = doc.getDocument().toObject(Profile_DataModel.class);
+                                if (profileDataModel.getUser_uid().equals(model.getUser_receiver())) {
+                                    holder.textViewChatsItemChatsName.setText(profileDataModel.getUser_name());
+                                    if (profileDataModel.getUser_image().equals("image")) {
                                         holder.roundedImageViewChatsItemChatsImage.setImageResource(R.drawable.profile_image);
                                     } else {
-                                        Picasso.get().load(profileClass.getUser_image()).into(holder.roundedImageViewChatsItemChatsImage);
+                                        Picasso.get().load(profileDataModel.getUser_image()).into(holder.roundedImageViewChatsItemChatsImage);
                                     }
                                 }
                             }

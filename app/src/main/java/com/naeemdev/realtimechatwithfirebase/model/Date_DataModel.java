@@ -12,7 +12,7 @@ import com.naeemdev.realtimechatwithfirebase.R;
 
 import java.util.Calendar;
 
-public class DateClass extends DialogFragment {
+public class Date_DataModel extends DialogFragment {
 
     @NonNull
     @Override

@@ -2,15 +2,15 @@ package com.naeemdev.realtimechatwithfirebase.model;
 
 import java.util.Date;
 
-public class NopesClass {
+public class Nopes_DataModel {
 
     String user_nopes;
     Date user_noped;
 
-    public NopesClass() {
+    public Nopes_DataModel() {
     }
 
-    public NopesClass(String user_nopes, Date user_noped) {
+    public Nopes_DataModel(String user_nopes, Date user_noped) {
         this.user_nopes = user_nopes;
         this.user_noped = user_noped;
     }

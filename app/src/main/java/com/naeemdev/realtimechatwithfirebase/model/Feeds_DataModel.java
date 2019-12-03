@@ -2,7 +2,7 @@ package com.naeemdev.realtimechatwithfirebase.model;
 
 import java.util.Date;
 
-public class FeedsClass {
+public class Feeds_DataModel {
     public Date feed_date;
     String feed_like;
     String feed_cover;
@@ -10,10 +10,10 @@ public class FeedsClass {
     String feed_show;
     String feed_uid;
 
-    public FeedsClass() {
+    public Feeds_DataModel() {
     }
 
-    public FeedsClass(Date feed_date, String feed_like, String feed_cover, String feed_user, String feed_show, String feed_uid) {
+    public Feeds_DataModel(Date feed_date, String feed_like, String feed_cover, String feed_user, String feed_show, String feed_uid) {
         this.feed_date = feed_date;
         this.feed_like = feed_like;
         this.feed_cover = feed_cover;

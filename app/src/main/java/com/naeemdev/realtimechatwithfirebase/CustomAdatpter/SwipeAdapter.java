@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.ProfileClass;
+import com.naeemdev.realtimechatwithfirebase.model.Profile_DataModel;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.ProfileActivity;
 import com.squareup.picasso.Picasso;
 
@@ -25,14 +25,14 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.ViewHolder> {
 
-    ArrayList<ProfileClass> arrayProfileClasses;
+    ArrayList<Profile_DataModel> arrayProfileDataModels;
     Context context;
 
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
 
-    public SwipeAdapter(ArrayList<ProfileClass> arrayProfileClasses, Context context) {
-        this.arrayProfileClasses = arrayProfileClasses;
+    public SwipeAdapter(ArrayList<Profile_DataModel> arrayProfileDataModels, Context context) {
+        this.arrayProfileDataModels = arrayProfileDataModels;
         this.context = context;
     }
 
@@ -48,14 +48,14 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.ViewHolder> 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
 
-        return new ViewHolder(view, context, arrayProfileClasses);
+        return new ViewHolder(view, context, arrayProfileDataModels);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull SwipeAdapter.ViewHolder viewHolder, int i) {
 
-        ProfileClass userClass = arrayProfileClasses.get(i);
+        Profile_DataModel userClass = arrayProfileDataModels.get(i);
 
 
         String userName = userClass.getUser_name();
@@ -85,7 +85,7 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return arrayProfileClasses.size();
+        return arrayProfileDataModels.size();
     }
 
     @Override
@@ -109,10 +109,10 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.ViewHolder> 
         CircleImageView circleImageViewUsersItemUsersOffline;
 
 
-        ArrayList<ProfileClass> intentUserClass = new ArrayList<ProfileClass>();
+        ArrayList<Profile_DataModel> intentUserClass = new ArrayList<Profile_DataModel>();
         Context context;
 
-        public ViewHolder(@NonNull View itemView, Context context, ArrayList<ProfileClass> intentUserClass) {
+        public ViewHolder(@NonNull View itemView, Context context, ArrayList<Profile_DataModel> intentUserClass) {
             super(itemView);
             this.intentUserClass = intentUserClass;
             this.context = context;
@@ -133,10 +133,10 @@ public class SwipeAdapter extends RecyclerView.Adapter<SwipeAdapter.ViewHolder> 
         public void onClick(View v) {
 
             int position = getAdapterPosition();
-            ProfileClass intentProfileClass = this.intentUserClass.get(position);
+            Profile_DataModel intentProfileDataModel = this.intentUserClass.get(position);
 
             Intent intent = new Intent(this.context, ProfileActivity.class);
-            intent.putExtra("user_uid", intentProfileClass.getUser_uid());
+            intent.putExtra("user_uid", intentProfileDataModel.getUser_uid());
 
             this.context.startActivity(intent);
         }

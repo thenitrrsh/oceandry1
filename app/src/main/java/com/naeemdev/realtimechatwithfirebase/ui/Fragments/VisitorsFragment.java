@@ -22,7 +22,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.naeemdev.realtimechatwithfirebase.R;
 import com.naeemdev.realtimechatwithfirebase.firestore.VisitorsFirestore;
-import com.naeemdev.realtimechatwithfirebase.model.VisitorsClass;
+import com.naeemdev.realtimechatwithfirebase.model.Visitors_DataModel;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.ProfileActivity;
 
 public class VisitorsFragment extends Fragment {
@@ -84,8 +84,8 @@ public class VisitorsFragment extends Fragment {
                 .collection("visits")
                 .orderBy("user_visited", Query.Direction.DESCENDING);
 
-        FirestoreRecyclerOptions<VisitorsClass> options = new FirestoreRecyclerOptions.Builder<VisitorsClass>()
-                .setQuery(query, VisitorsClass.class)
+        FirestoreRecyclerOptions<Visitors_DataModel> options = new FirestoreRecyclerOptions.Builder<Visitors_DataModel>()
+                .setQuery(query, Visitors_DataModel.class)
                 .build();
 
         visitorsFirestore = new VisitorsFirestore(options);
@@ -97,12 +97,12 @@ public class VisitorsFragment extends Fragment {
         visitorsFirestore.setOnItemClickListener(new VisitorsFirestore.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                final VisitorsClass visitorsClass = documentSnapshot.toObject(VisitorsClass.class);
+                final Visitors_DataModel visitorsDataModel = documentSnapshot.toObject(Visitors_DataModel.class);
                 String id = documentSnapshot.getId();
                 String path = documentSnapshot.getReference().getPath();
 
                 final Intent intent = new Intent(getContext(), ProfileActivity.class);
-                intent.putExtra("user_uid", visitorsClass.getUser_visitor());
+                intent.putExtra("user_uid", visitorsDataModel.getUser_visitor());
                 startActivity(intent);
 
             }

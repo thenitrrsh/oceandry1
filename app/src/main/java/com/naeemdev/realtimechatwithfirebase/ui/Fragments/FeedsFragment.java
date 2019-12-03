@@ -27,8 +27,8 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.naeemdev.realtimechatwithfirebase.CustomAdatpter.FeedsAdapter;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.FeedsClass;
-import com.naeemdev.realtimechatwithfirebase.model.MatchesClass;
+import com.naeemdev.realtimechatwithfirebase.model.Feeds_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Matches_DataModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +55,8 @@ public class FeedsFragment extends Fragment {
     LinearLayout linearLayoutFeedsEmpty;
     private RecyclerView recyclerViewUserView;
     private FeedsAdapter feedsAdapter;
-    private ArrayList<FeedsClass> arrayUserClass;
-    private ArrayList<FeedsClass> arrayFeedsClasses;
+    private ArrayList<Feeds_DataModel> arrayUserClass;
+    private ArrayList<Feeds_DataModel> arrayFeedsDataModels;
     private List<String> arrayUserFollows;
     private List<String> arrayUserFeedsCheck;
 
@@ -77,7 +77,7 @@ public class FeedsFragment extends Fragment {
         prefs = this.getActivity().getSharedPreferences("pref", Context.MODE_PRIVATE);
 
         arrayUserClass = new ArrayList<>();
-        arrayFeedsClasses = new ArrayList<>();
+        arrayFeedsDataModels = new ArrayList<>();
         progressBarFeedsView = view.findViewById(R.id.progressBarFeedsView);
 
         recyclerViewUserView = view.findViewById(R.id.recyclerViewFeedsView);
@@ -111,7 +111,7 @@ public class FeedsFragment extends Fragment {
                                             @Override
                                             public void run() {
                                                 swipeRefreshLayout.setRefreshing(true);
-                                                arrayFeedsClasses.clear();
+                                                arrayFeedsDataModels.clear();
                                                 arrayUserFollows.clear();
                                                 arrayUserFeedsCheck.clear();
                                                 UserRecyclerViewNew();
@@ -136,8 +136,8 @@ public class FeedsFragment extends Fragment {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (DocumentChange doc : task.getResult().getDocumentChanges()) {
-                                MatchesClass matchesClass = doc.getDocument().toObject(MatchesClass.class);
-                                arrayUserFollows.add(matchesClass.getUser_matches());
+                                Matches_DataModel matchesDataModel = doc.getDocument().toObject(Matches_DataModel.class);
+                                arrayUserFollows.add(matchesDataModel.getUser_matches());
                             }
                         }
                     }
@@ -153,21 +153,21 @@ public class FeedsFragment extends Fragment {
 
                         for (DocumentChange doc : task.getResult().getDocumentChanges()) {
 
-                            FeedsClass feedsClass = doc.getDocument().toObject(FeedsClass.class);
+                            Feeds_DataModel feedsDataModel = doc.getDocument().toObject(Feeds_DataModel.class);
 
-                            if (arrayUserFollows.contains(feedsClass.getFeed_user())) {
+                            if (arrayUserFollows.contains(feedsDataModel.getFeed_user())) {
 
-                                if (feedsClass.getFeed_show() != null &&
-                                        feedsClass.getFeed_show().equals("yes")) {
+                                if (feedsDataModel.getFeed_show() != null &&
+                                        feedsDataModel.getFeed_show().equals("yes")) {
 
-                                    arrayFeedsClasses.add(feedsClass);
+                                    arrayFeedsDataModels.add(feedsDataModel);
 
                                 }
 
                             }
 
 
-                            feedsAdapter = new FeedsAdapter(arrayFeedsClasses, getActivity());
+                            feedsAdapter = new FeedsAdapter(arrayFeedsDataModels, getActivity());
                             recyclerViewUserView.setAdapter(feedsAdapter);
                             swipeRefreshLayout.setRefreshing(false);
                             progressBarFeedsView.setVisibility(View.GONE);
@@ -175,7 +175,7 @@ public class FeedsFragment extends Fragment {
                         }
 
 
-                        if (arrayFeedsClasses.size() == 0) {
+                        if (arrayFeedsDataModels.size() == 0) {
                             progressBarFeedsView.setVisibility(View.GONE);
                             relativeLayoutFeedsContent.setVisibility(View.GONE);
                             linearLayoutFeedsEmpty.setVisibility(View.VISIBLE);

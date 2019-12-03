@@ -2,7 +2,7 @@ package com.naeemdev.realtimechatwithfirebase.model;
 
 import java.util.Date;
 
-public class MessageClass {
+public class Message_DataModel {
 
 
     Date user_datesent;
@@ -11,10 +11,10 @@ public class MessageClass {
     String user_message;
     String user_unread;
 
-    public MessageClass() {
+    public Message_DataModel() {
     }
 
-    public MessageClass(Date user_datesent, String user_sender, String user_receiver, String user_message, String user_unread) {
+    public Message_DataModel(Date user_datesent, String user_sender, String user_receiver, String user_message, String user_unread) {
         this.user_datesent = user_datesent;
         this.user_sender = user_sender;
         this.user_receiver = user_receiver;

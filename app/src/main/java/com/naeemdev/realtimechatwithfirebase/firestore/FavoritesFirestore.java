@@ -21,24 +21,24 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.FavoritesClass;
-import com.naeemdev.realtimechatwithfirebase.model.ProfileClass;
+import com.naeemdev.realtimechatwithfirebase.model.Favorites_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Profile_DataModel;
 import com.squareup.picasso.Picasso;
 
 import javax.annotation.Nullable;
 
-public class FavoritesFirestore extends FirestoreRecyclerAdapter<FavoritesClass, FavoritesFirestore.FavoritesHolder> {
+public class FavoritesFirestore extends FirestoreRecyclerAdapter<Favorites_DataModel, FavoritesFirestore.FavoritesHolder> {
 
     long milliseconds;
 
     private OnItemClickListener listener;
 
-    public FavoritesFirestore(@NonNull FirestoreRecyclerOptions<FavoritesClass> options) {
+    public FavoritesFirestore(@NonNull FirestoreRecyclerOptions<Favorites_DataModel> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final FavoritesHolder holder, int position, @NonNull final FavoritesClass model) {
+    protected void onBindViewHolder(@NonNull final FavoritesHolder holder, int position, @NonNull final Favorites_DataModel model) {
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -49,14 +49,14 @@ public class FavoritesFirestore extends FirestoreRecyclerAdapter<FavoritesClass,
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         if (queryDocumentSnapshots != null) {
                             for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
-                                ProfileClass profileClass = doc.getDocument().toObject(ProfileClass.class);
-                                if (profileClass.getUser_uid().equals(model.getUser_favorite())) {
-                                    holder.textViewFavoritesItemFavoritesName.setText(profileClass.getUser_name());
+                                Profile_DataModel profileDataModel = doc.getDocument().toObject(Profile_DataModel.class);
+                                if (profileDataModel.getUser_uid().equals(model.getUser_favorite())) {
+                                    holder.textViewFavoritesItemFavoritesName.setText(profileDataModel.getUser_name());
 
-                                    if (profileClass.getUser_thumb().equals("thumb")) {
+                                    if (profileDataModel.getUser_thumb().equals("thumb")) {
                                         holder.roundedImageViewFavoritesItemFavoritesImage.setImageResource(R.drawable.profile_image);
                                     } else {
-                                        Picasso.get().load(profileClass.getUser_thumb()).into(holder.roundedImageViewFavoritesItemFavoritesImage);
+                                        Picasso.get().load(profileDataModel.getUser_thumb()).into(holder.roundedImageViewFavoritesItemFavoritesImage);
                                     }
 
                                 }

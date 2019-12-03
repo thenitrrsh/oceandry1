@@ -1,10 +1,10 @@
 package com.naeemdev.realtimechatwithfirebase.model;
 
-public class EventClass {
+public class Event_DataModel {
 
     public final String message;
 
-    public EventClass(String message) {
+    public Event_DataModel(String message) {
         this.message = message;
     }
 }

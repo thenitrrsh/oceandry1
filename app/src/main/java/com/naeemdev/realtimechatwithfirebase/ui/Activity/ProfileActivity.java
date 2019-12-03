@@ -28,8 +28,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.EventClass;
-import com.naeemdev.realtimechatwithfirebase.model.ImageClass;
+import com.naeemdev.realtimechatwithfirebase.model.Event_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Image_DataModel;
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -304,10 +304,10 @@ public class ProfileActivity extends AppCompatActivity {
 
         profileUser = getIntent().getStringExtra("user_uid");
 
-        ImageClass imageClass = new ImageClass(this);
+        Image_DataModel imageDataModel = new Image_DataModel(this);
 
 
-        Slider.init(imageClass);
+        Slider.init(imageDataModel);
 
         floatingActionButtonChat.bringToFront();
 
@@ -600,7 +600,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void EventSend() {
-        EventBus.getDefault().post(new EventClass("Refresh"));
+        EventBus.getDefault().post(new Event_DataModel("Refresh"));
     }
 
     private void StartSlider(final int position, final ImageView imageView) {

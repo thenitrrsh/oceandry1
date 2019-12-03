@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.FeedsClass;
+import com.naeemdev.realtimechatwithfirebase.model.Feeds_DataModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -173,9 +173,9 @@ public class SettingsActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     for (QueryDocumentSnapshot querySnapshot : task.getResult()) {
 
-                                        FeedsClass feedsClass = querySnapshot.toObject(FeedsClass.class);
+                                        Feeds_DataModel feedsDataModel = querySnapshot.toObject(Feeds_DataModel.class);
 
-                                        if (feedsClass.getFeed_user().equals(currentUser)) {
+                                        if (feedsDataModel.getFeed_user().equals(currentUser)) {
 
                                             Map<String, Object> mapUserFeeds = new HashMap<>();
                                             mapUserFeeds.put("feed_show", "yes");
@@ -214,9 +214,9 @@ public class SettingsActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                     for (QueryDocumentSnapshot querySnapshot : task.getResult()) {
 
-                                        FeedsClass feedsClass = querySnapshot.toObject(FeedsClass.class);
+                                        Feeds_DataModel feedsDataModel = querySnapshot.toObject(Feeds_DataModel.class);
 
-                                        if (feedsClass.getFeed_user().equals(currentUser)) {
+                                        if (feedsDataModel.getFeed_user().equals(currentUser)) {
 
                                             Map<String, Object> mapUserFeeds = new HashMap<>();
                                             mapUserFeeds.put("feed_show", "no");

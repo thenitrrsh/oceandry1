@@ -2,7 +2,7 @@ package com.naeemdev.realtimechatwithfirebase.model;
 
 import java.util.Date;
 
-public class ProfileClass {
+public class Profile_DataModel {
 
 
     private String user_uid;
@@ -42,11 +42,11 @@ public class ProfileClass {
     private String share_location;
     private String share_birthage;
 
-    public ProfileClass() {
+    public Profile_DataModel() {
 
     }
 
-    public ProfileClass(String user_uid, String user_email, String user_epass, String user_name, String user_gender, String user_birthday, String user_birthage, String user_city, String user_state, String user_country, String user_location, String user_thumb, String user_image, String user_cover, String user_status, String user_latitude, String user_longitude, String user_about, String user_looking, Date user_online, Date user_joined, String user_marital, String user_sexual, String user_seeking, String show_ages, String show_gender, String show_location, String show_marital, String show_sexual, String show_seeking, String show_profile, String share_location, String share_birthage) {
+    public Profile_DataModel(String user_uid, String user_email, String user_epass, String user_name, String user_gender, String user_birthday, String user_birthage, String user_city, String user_state, String user_country, String user_location, String user_thumb, String user_image, String user_cover, String user_status, String user_latitude, String user_longitude, String user_about, String user_looking, Date user_online, Date user_joined, String user_marital, String user_sexual, String user_seeking, String show_ages, String show_gender, String show_location, String show_marital, String show_sexual, String show_seeking, String show_profile, String share_location, String share_birthage) {
         this.user_uid = user_uid;
         this.user_email = user_email;
         this.user_epass = user_epass;

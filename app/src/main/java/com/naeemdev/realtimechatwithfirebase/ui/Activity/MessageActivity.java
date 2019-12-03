@@ -44,8 +44,8 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import com.naeemdev.realtimechatwithfirebase.Application;
 import com.naeemdev.realtimechatwithfirebase.CustomAdatpter.MessageAdapter;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.BlockClass;
-import com.naeemdev.realtimechatwithfirebase.model.ChatsClass;
+import com.naeemdev.realtimechatwithfirebase.model.Block_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Chats_DataModel;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -68,8 +68,8 @@ public class MessageActivity extends AppCompatActivity {
     Toolbar toolbarToolbar;
     RoundedImageView toolbarImageViewUserImage;
     MessageAdapter messageAdapter;
-    ArrayList<ChatsClass> listChatsClass;
-    ArrayList<BlockClass> arraylistBlockUsers;
+    ArrayList<Chats_DataModel> listChatsDataModels;
+    ArrayList<Block_DataModel> arraylistBlockUsers;
     RecyclerView recyclerViewMessageView;
     Bitmap image;
     String profileUser;
@@ -111,7 +111,7 @@ public class MessageActivity extends AppCompatActivity {
         editTextMessageText = findViewById(R.id.editTextMessageText);
         buttonMessageSend = findViewById(R.id.buttonMessageSend);
         // buttonMessageImage = findViewById(R.id.buttonMessageImage);
-        listChatsClass = new ArrayList<>();
+        listChatsDataModels = new ArrayList<>();
 
         relativeLayoutMessageChat = findViewById(R.id.relativeLayoutMessageChat);
 
@@ -353,26 +353,26 @@ public class MessageActivity extends AppCompatActivity {
                                              if (queryDocumentSnapshots != null) {
                                                  for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
                                                      if (doc.getType() == DocumentChange.Type.ADDED) {
-                                                         ChatsClass chatsClass = doc.getDocument().toObject(ChatsClass.class);
+                                                         Chats_DataModel chatsDataModel = doc.getDocument().toObject(Chats_DataModel.class);
                                                          if (
-                                                                 (chatsClass.getChat_receiver().equals(myid) &&
-                                                                         chatsClass.getChat_sender().equals(userid) ||
-                                                                         chatsClass.getChat_receiver().equals(userid) &&
-                                                                                 chatsClass.getChat_sender().equals(myid)) &&
-                                                                         (!chatsClass.getDelete_sender().equals(myid) &&
-                                                                                 !chatsClass.getDelete_receiver().equals(myid))
+                                                                 (chatsDataModel.getChat_receiver().equals(myid) &&
+                                                                         chatsDataModel.getChat_sender().equals(userid) ||
+                                                                         chatsDataModel.getChat_receiver().equals(userid) &&
+                                                                                 chatsDataModel.getChat_sender().equals(myid)) &&
+                                                                         (!chatsDataModel.getDelete_sender().equals(myid) &&
+                                                                                 !chatsDataModel.getDelete_receiver().equals(myid))
                                                          ) {
-                                                             listChatsClass.add(chatsClass);
+                                                             listChatsDataModels.add(chatsDataModel);
                                                          }
                                                      }
 
                                                      if (doc.getType() == DocumentChange.Type.MODIFIED) {
 
-                                                         ChatsClass chatsClassMod = doc.getDocument().toObject(ChatsClass.class);
-                                                         for (int i = 0; i < listChatsClass.size(); i++) {
-                                                             if (doc.getDocument().getDate("chat_datesent").equals(listChatsClass.get(i).getChat_datesent())) {
-                                                                 if (doc.getDocument().getString("chat_message").equals(listChatsClass.get(i).getChat_message())) {
-                                                                     listChatsClass.set(i, chatsClassMod);
+                                                         Chats_DataModel chatsDataModelMod = doc.getDocument().toObject(Chats_DataModel.class);
+                                                         for (int i = 0; i < listChatsDataModels.size(); i++) {
+                                                             if (doc.getDocument().getDate("chat_datesent").equals(listChatsDataModels.get(i).getChat_datesent())) {
+                                                                 if (doc.getDocument().getString("chat_message").equals(listChatsDataModels.get(i).getChat_message())) {
+                                                                     listChatsDataModels.set(i, chatsDataModelMod);
                                                                  }
                                                              }
                                                          }
@@ -380,7 +380,7 @@ public class MessageActivity extends AppCompatActivity {
                                                      }
                                                  }
 
-                                                 messageAdapter = new MessageAdapter(listChatsClass, MessageActivity.this);
+                                                 messageAdapter = new MessageAdapter(listChatsDataModels, MessageActivity.this);
                                                  recyclerViewMessageView.setAdapter(messageAdapter);
                                              }
                                          }
@@ -663,21 +663,21 @@ public class MessageActivity extends AppCompatActivity {
 
                         if (queryDocumentSnapshots != null) {
                             for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
-                                final ChatsClass chatsClass = doc.getDocument().toObject(ChatsClass.class);
+                                final Chats_DataModel chatsDataModel = doc.getDocument().toObject(Chats_DataModel.class);
                                 if (
-                                        (chatsClass.getChat_receiver().equals(currentUser) &&
-                                                chatsClass.getChat_sender().equals(profileUser) ||
-                                                chatsClass.getChat_receiver().equals(profileUser) &&
-                                                        chatsClass.getChat_sender().equals(currentUser))
+                                        (chatsDataModel.getChat_receiver().equals(currentUser) &&
+                                                chatsDataModel.getChat_sender().equals(profileUser) ||
+                                                chatsDataModel.getChat_receiver().equals(profileUser) &&
+                                                        chatsDataModel.getChat_sender().equals(currentUser))
                                 ) {
-                                    if (chatsClass.getDelete_sender().equals("delete")) {
+                                    if (chatsDataModel.getDelete_sender().equals("delete")) {
 
                                         Map<String, Object> arrayDeleteSender = new HashMap<>();
                                         arrayDeleteSender.put("delete_sender", currentUser);
                                         firebaseFirestore.collection("chats")
                                                 .document(doc.getDocument().getId())
                                                 .update(arrayDeleteSender);
-                                    } else if (chatsClass.getDelete_receiver().equals("delete")) {
+                                    } else if (chatsDataModel.getDelete_receiver().equals("delete")) {
 
                                         Map<String, Object> arrayDeleteReceiver = new HashMap<>();
                                         arrayDeleteReceiver.put("delete_receiver", currentUser);
@@ -915,16 +915,16 @@ public class MessageActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for (QueryDocumentSnapshot querySnapshot : task.getResult()) {
 
-                            ChatsClass chatsClass = querySnapshot.toObject(ChatsClass.class);
+                            Chats_DataModel chatsDataModel = querySnapshot.toObject(Chats_DataModel.class);
 
-                            if (chatsClass.getChat_receiver().equals(firebaseUser.getUid()) &&
-                                    chatsClass.getChat_sender().equals(userid)) {
+                            if (chatsDataModel.getChat_receiver().equals(firebaseUser.getUid()) &&
+                                    chatsDataModel.getChat_sender().equals(userid)) {
 
                                 HashMap<String, Object> seenHashMap = new HashMap<>();
                                 seenHashMap.put("chat_seenchat", "yes");
                                 seenHashMap.put("chat_dateseen", Timestamp.now());
 
-                                if (chatsClass.getChat_seenchat().equals("no")) {
+                                if (chatsDataModel.getChat_seenchat().equals("no")) {
 
                                     querySnapshot.getReference().update(seenHashMap);
                                 }

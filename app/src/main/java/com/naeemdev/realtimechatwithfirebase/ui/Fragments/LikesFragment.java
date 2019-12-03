@@ -22,7 +22,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.naeemdev.realtimechatwithfirebase.R;
 import com.naeemdev.realtimechatwithfirebase.firestore.LikesFirestore;
-import com.naeemdev.realtimechatwithfirebase.model.LikesClass;
+import com.naeemdev.realtimechatwithfirebase.model.Likes_DataModel;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.ProfileActivity;
 
 public class LikesFragment extends Fragment {
@@ -83,8 +83,8 @@ public class LikesFragment extends Fragment {
                 .collection("likes")
                 .orderBy("user_liked", Query.Direction.DESCENDING);
 
-        FirestoreRecyclerOptions<LikesClass> options = new FirestoreRecyclerOptions.Builder<LikesClass>()
-                .setQuery(query, LikesClass.class)
+        FirestoreRecyclerOptions<Likes_DataModel> options = new FirestoreRecyclerOptions.Builder<Likes_DataModel>()
+                .setQuery(query, Likes_DataModel.class)
                 .build();
 
         likesFirestore = new LikesFirestore(options);
@@ -95,12 +95,12 @@ public class LikesFragment extends Fragment {
         likesFirestore.setOnItemClickListener(new LikesFirestore.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                final LikesClass likesClass = documentSnapshot.toObject(LikesClass.class);
+                final Likes_DataModel likesDataModel = documentSnapshot.toObject(Likes_DataModel.class);
                 String id = documentSnapshot.getId();
                 String path = documentSnapshot.getReference().getPath();
 
                 final Intent intent = new Intent(getContext(), ProfileActivity.class);
-                intent.putExtra("user_uid", likesClass.getUser_likes());
+                intent.putExtra("user_uid", likesDataModel.getUser_likes());
                 startActivity(intent);
             }
         });

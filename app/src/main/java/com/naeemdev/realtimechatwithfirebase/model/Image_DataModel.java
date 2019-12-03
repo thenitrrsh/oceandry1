@@ -7,10 +7,10 @@ import com.squareup.picasso.Picasso;
 
 import ss.com.bannerslider.ImageLoadingService;
 
-public class ImageClass implements ImageLoadingService {
+public class Image_DataModel implements ImageLoadingService {
     public Context context;
 
-    public ImageClass(Context context) {
+    public Image_DataModel(Context context) {
         this.context = context;
     }
 

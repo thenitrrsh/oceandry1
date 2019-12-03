@@ -21,24 +21,24 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.ProfileClass;
-import com.naeemdev.realtimechatwithfirebase.model.VisitorsClass;
+import com.naeemdev.realtimechatwithfirebase.model.Profile_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Visitors_DataModel;
 import com.squareup.picasso.Picasso;
 
 import javax.annotation.Nullable;
 
-public class VisitorsFirestore extends FirestoreRecyclerAdapter<VisitorsClass, VisitorsFirestore.VisitsHolder> {
+public class VisitorsFirestore extends FirestoreRecyclerAdapter<Visitors_DataModel, VisitorsFirestore.VisitsHolder> {
 
     long milliseconds;
 
     private OnItemClickListener listener;
 
-    public VisitorsFirestore(@NonNull FirestoreRecyclerOptions<VisitorsClass> options) {
+    public VisitorsFirestore(@NonNull FirestoreRecyclerOptions<Visitors_DataModel> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final VisitsHolder holder, int position, @NonNull final VisitorsClass model) {
+    protected void onBindViewHolder(@NonNull final VisitsHolder holder, int position, @NonNull final Visitors_DataModel model) {
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -49,14 +49,14 @@ public class VisitorsFirestore extends FirestoreRecyclerAdapter<VisitorsClass, V
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         if (queryDocumentSnapshots != null) {
                             for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
-                                ProfileClass profileClass = doc.getDocument().toObject(ProfileClass.class);
-                                if (profileClass.getUser_uid().equals(model.getUser_visitor())) {
-                                    holder.textViewVisitsItemVisitsName.setText(profileClass.getUser_name());
+                                Profile_DataModel profileDataModel = doc.getDocument().toObject(Profile_DataModel.class);
+                                if (profileDataModel.getUser_uid().equals(model.getUser_visitor())) {
+                                    holder.textViewVisitsItemVisitsName.setText(profileDataModel.getUser_name());
 
-                                    if (profileClass.getUser_thumb().equals("thumb")) {
+                                    if (profileDataModel.getUser_thumb().equals("thumb")) {
                                         holder.roundedImageViewVisitsItemVisitsImage.setImageResource(R.drawable.profile_image);
                                     } else {
-                                        Picasso.get().load(profileClass.getUser_thumb()).into(holder.roundedImageViewVisitsItemVisitsImage);
+                                        Picasso.get().load(profileDataModel.getUser_thumb()).into(holder.roundedImageViewVisitsItemVisitsImage);
                                     }
 
                                 }

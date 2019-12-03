@@ -26,11 +26,11 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.naeemdev.realtimechatwithfirebase.CustomAdatpter.SwipeAdapter;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.EventClass;
-import com.naeemdev.realtimechatwithfirebase.model.LovesClass;
-import com.naeemdev.realtimechatwithfirebase.model.MatchesClass;
-import com.naeemdev.realtimechatwithfirebase.model.NopesClass;
-import com.naeemdev.realtimechatwithfirebase.model.ProfileClass;
+import com.naeemdev.realtimechatwithfirebase.model.Event_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Loves_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Matches_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Nopes_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Profile_DataModel;
 import com.skyfishjy.library.RippleBackground;
 import com.squareup.picasso.Picasso;
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager;
@@ -85,7 +85,7 @@ public class SwipeFragment extends Fragment implements CardStackListener {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private FirebaseFirestore firebaseFirestore;
-    private ArrayList<ProfileClass> arrayUserClass;
+    private ArrayList<Profile_DataModel> arrayUserClass;
     private List<String> arrayUserRemove;
 
     /**
@@ -218,8 +218,8 @@ public class SwipeFragment extends Fragment implements CardStackListener {
                         if (queryDocumentSnapshots != null) {
                             for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
                                 if (doc.getType() == DocumentChange.Type.ADDED) {
-                                    LovesClass lovesClass = doc.getDocument().toObject(LovesClass.class);
-                                    arrayUserRemove.add(lovesClass.getUser_loves());
+                                    Loves_DataModel lovesDataModel = doc.getDocument().toObject(Loves_DataModel.class);
+                                    arrayUserRemove.add(lovesDataModel.getUser_loves());
 
                                 }
                             }
@@ -239,8 +239,8 @@ public class SwipeFragment extends Fragment implements CardStackListener {
                         if (queryDocumentSnapshots != null) {
                             for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
                                 if (doc.getType() == DocumentChange.Type.ADDED) {
-                                    NopesClass nopesClass = doc.getDocument().toObject(NopesClass.class);
-                                    arrayUserRemove.add(nopesClass.getUser_nopes());
+                                    Nopes_DataModel nopesDataModel = doc.getDocument().toObject(Nopes_DataModel.class);
+                                    arrayUserRemove.add(nopesDataModel.getUser_nopes());
 
                                 }
                             }
@@ -259,8 +259,8 @@ public class SwipeFragment extends Fragment implements CardStackListener {
                         if (queryDocumentSnapshots != null) {
                             for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
                                 if (doc.getType() == DocumentChange.Type.ADDED) {
-                                    MatchesClass matchesClass = doc.getDocument().toObject(MatchesClass.class);
-                                    arrayUserRemove.add(matchesClass.getUser_matches());
+                                    Matches_DataModel matchesDataModel = doc.getDocument().toObject(Matches_DataModel.class);
+                                    arrayUserRemove.add(matchesDataModel.getUser_matches());
 
                                 }
                             }
@@ -396,13 +396,13 @@ public class SwipeFragment extends Fragment implements CardStackListener {
 
                         for (QueryDocumentSnapshot querySnapshot : task.getResult()) {
 
-                            ProfileClass profileClass = querySnapshot.toObject(ProfileClass.class);
+                            Profile_DataModel profileDataModel = querySnapshot.toObject(Profile_DataModel.class);
 
-                            if (!profileClass.getUser_uid().equals(currentUser)) {
+                            if (!profileDataModel.getUser_uid().equals(currentUser)) {
 
                                 if (stringCheckGender.equals("Any")) {
 
-                                    int intBirthage = Integer.valueOf(profileClass.getUser_birthage());
+                                    int intBirthage = Integer.valueOf(profileDataModel.getUser_birthage());
                                     int intLookageMin = Integer.valueOf(stringCheckAgesMin);
                                     int intLookageMax = Integer.valueOf(stringCheckAgesMax);
 
@@ -416,97 +416,97 @@ public class SwipeFragment extends Fragment implements CardStackListener {
 
                                                     if (stringCheckSeeking.equals("Any")) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
 
-                                                    } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                    } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
                                                     }
 
 
-                                                } else if (stringCheckSexual.equals(profileClass.getUser_sexual())) {
+                                                } else if (stringCheckSexual.equals(profileDataModel.getUser_sexual())) {
 
                                                     if (stringCheckSeeking.equals("Any")) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
-                                                    } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                    } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
                                                     }
                                                 }
 
-                                            } else if (stringCheckMarital.equals(profileClass.getUser_marital())) {
+                                            } else if (stringCheckMarital.equals(profileDataModel.getUser_marital())) {
 
                                                 if (stringCheckSexual.equals("Any")) {
 
                                                     if (stringCheckSeeking.equals("Any")) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
-                                                    } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                    } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
                                                     }
-                                                } else if (stringCheckSexual.equals(profileClass.getUser_sexual())) {
+                                                } else if (stringCheckSexual.equals(profileDataModel.getUser_sexual())) {
 
                                                     if (stringCheckSeeking.equals("Any")) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
-                                                    } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                    } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
@@ -515,9 +515,9 @@ public class SwipeFragment extends Fragment implements CardStackListener {
                                             }
 
 
-                                        } else if (stringCheckLocation.equals(profileClass.getUser_city()) ||
-                                                stringCheckLocation.equals(profileClass.getUser_state()) ||
-                                                stringCheckLocation.equals(profileClass.getUser_country())) {
+                                        } else if (stringCheckLocation.equals(profileDataModel.getUser_city()) ||
+                                                stringCheckLocation.equals(profileDataModel.getUser_state()) ||
+                                                stringCheckLocation.equals(profileDataModel.getUser_country())) {
 
                                             if (stringCheckMarital.equals("Any")) {
 
@@ -525,93 +525,93 @@ public class SwipeFragment extends Fragment implements CardStackListener {
 
                                                     if (stringCheckSeeking.equals("Any")) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
-                                                    } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                    } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
                                                     }
-                                                } else if (stringCheckSexual.equals(profileClass.getUser_sexual())) {
+                                                } else if (stringCheckSexual.equals(profileDataModel.getUser_sexual())) {
 
                                                     if (stringCheckSeeking.equals("Any")) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
-                                                    } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                    } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
                                                     }
                                                 }
-                                            } else if (stringCheckMarital.equals(profileClass.getUser_marital())) {
+                                            } else if (stringCheckMarital.equals(profileDataModel.getUser_marital())) {
 
                                                 if (stringCheckSexual.equals("Any")) {
 
                                                     if (stringCheckSeeking.equals("Any")) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
-                                                    } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                    } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
                                                     }
-                                                } else if (stringCheckSexual.equals(profileClass.getUser_sexual())) {
+                                                } else if (stringCheckSexual.equals(profileDataModel.getUser_sexual())) {
 
                                                     if (stringCheckSeeking.equals("Any")) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
-                                                    } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                    } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                        if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                        if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                            if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                            if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                arrayUserClass.add(profileClass);
+                                                                arrayUserClass.add(profileDataModel);
 
                                                             }
                                                         }
@@ -626,10 +626,10 @@ public class SwipeFragment extends Fragment implements CardStackListener {
 
                                 } else {
 
-                                    if (profileClass.getUser_gender().equals(stringCheckGender)) {
+                                    if (profileDataModel.getUser_gender().equals(stringCheckGender)) {
 
 
-                                        int intBirthage = Integer.valueOf(profileClass.getUser_birthage());
+                                        int intBirthage = Integer.valueOf(profileDataModel.getUser_birthage());
                                         int intLookageMin = Integer.valueOf(stringCheckAgesMin);
                                         int intLookageMax = Integer.valueOf(stringCheckAgesMax);
 
@@ -643,96 +643,96 @@ public class SwipeFragment extends Fragment implements CardStackListener {
 
                                                         if (stringCheckSeeking.equals("Any")) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
-                                                        } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                        } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
                                                         }
 
 
-                                                    } else if (stringCheckSexual.equals(profileClass.getUser_sexual())) {
+                                                    } else if (stringCheckSexual.equals(profileDataModel.getUser_sexual())) {
 
                                                         if (stringCheckSeeking.equals("Any")) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
-                                                        } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                        } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
                                                         }
                                                     }
 
-                                                } else if (stringCheckMarital.equals(profileClass.getUser_marital())) {
+                                                } else if (stringCheckMarital.equals(profileDataModel.getUser_marital())) {
 
                                                     if (stringCheckSexual.equals("Any")) {
 
                                                         if (stringCheckSeeking.equals("Any")) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
-                                                        } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                        } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
                                                         }
-                                                    } else if (stringCheckSexual.equals(profileClass.getUser_sexual())) {
+                                                    } else if (stringCheckSexual.equals(profileDataModel.getUser_sexual())) {
 
                                                         if (stringCheckSeeking.equals("Any")) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
-                                                        } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                        } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
@@ -741,9 +741,9 @@ public class SwipeFragment extends Fragment implements CardStackListener {
                                                 }
 
 
-                                            } else if (stringCheckLocation.equals(profileClass.getUser_city()) ||
-                                                    stringCheckLocation.equals(profileClass.getUser_state()) ||
-                                                    stringCheckLocation.equals(profileClass.getUser_country())) {
+                                            } else if (stringCheckLocation.equals(profileDataModel.getUser_city()) ||
+                                                    stringCheckLocation.equals(profileDataModel.getUser_state()) ||
+                                                    stringCheckLocation.equals(profileDataModel.getUser_country())) {
 
                                                 if (stringCheckMarital.equals("Any")) {
 
@@ -751,93 +751,93 @@ public class SwipeFragment extends Fragment implements CardStackListener {
 
                                                         if (stringCheckSeeking.equals("Any")) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
-                                                        } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                        } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
                                                         }
-                                                    } else if (stringCheckSexual.equals(profileClass.getUser_sexual())) {
+                                                    } else if (stringCheckSexual.equals(profileDataModel.getUser_sexual())) {
 
                                                         if (stringCheckSeeking.equals("Any")) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
-                                                        } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                        } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
                                                         }
                                                     }
-                                                } else if (stringCheckMarital.equals(profileClass.getUser_marital())) {
+                                                } else if (stringCheckMarital.equals(profileDataModel.getUser_marital())) {
 
                                                     if (stringCheckSexual.equals("Any")) {
 
                                                         if (stringCheckSeeking.equals("Any")) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
-                                                        } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                        } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
                                                         }
-                                                    } else if (stringCheckSexual.equals(profileClass.getUser_sexual())) {
+                                                    } else if (stringCheckSexual.equals(profileDataModel.getUser_sexual())) {
 
                                                         if (stringCheckSeeking.equals("Any")) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
-                                                        } else if (stringCheckSeeking.equals(profileClass.getUser_seeking())) {
+                                                        } else if (stringCheckSeeking.equals(profileDataModel.getUser_seeking())) {
 
-                                                            if (!arrayUserRemove.contains(profileClass.getUser_uid())) {
+                                                            if (!arrayUserRemove.contains(profileDataModel.getUser_uid())) {
 
-                                                                if (profileClass.getShow_profile() == null || profileClass.getShow_profile().equals("yes")) {
+                                                                if (profileDataModel.getShow_profile() == null || profileDataModel.getShow_profile().equals("yes")) {
 
-                                                                    arrayUserClass.add(profileClass);
+                                                                    arrayUserClass.add(profileDataModel);
 
                                                                 }
                                                             }
@@ -1105,7 +1105,7 @@ public class SwipeFragment extends Fragment implements CardStackListener {
 
 
     private void EventSend() {
-        EventBus.getDefault().post(new EventClass("Hello everyone!"));
+        EventBus.getDefault().post(new Event_DataModel("Hello everyone!"));
     }
 
 

@@ -2,16 +2,16 @@ package com.naeemdev.realtimechatwithfirebase.model;
 
 import java.util.Date;
 
-public class VisitorsClass {
+public class Visitors_DataModel {
 
     public Date user_visited;
     String user_visitor;
 
-    public VisitorsClass() {
+    public Visitors_DataModel() {
 
     }
 
-    public VisitorsClass(String user_visitor, Date user_visited) {
+    public Visitors_DataModel(String user_visitor, Date user_visited) {
         this.user_visitor = user_visitor;
         this.user_visited = user_visited;
     }

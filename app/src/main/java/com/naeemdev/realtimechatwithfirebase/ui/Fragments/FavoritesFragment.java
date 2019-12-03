@@ -22,7 +22,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.naeemdev.realtimechatwithfirebase.R;
 import com.naeemdev.realtimechatwithfirebase.firestore.FavoritesFirestore;
-import com.naeemdev.realtimechatwithfirebase.model.FavoritesClass;
+import com.naeemdev.realtimechatwithfirebase.model.Favorites_DataModel;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.ProfileActivity;
 
 public class FavoritesFragment extends Fragment {
@@ -82,8 +82,8 @@ public class FavoritesFragment extends Fragment {
                 .collection("favors")
                 .orderBy("user_favorited", Query.Direction.DESCENDING);
 
-        FirestoreRecyclerOptions<FavoritesClass> options = new FirestoreRecyclerOptions.Builder<FavoritesClass>()
-                .setQuery(query, FavoritesClass.class)
+        FirestoreRecyclerOptions<Favorites_DataModel> options = new FirestoreRecyclerOptions.Builder<Favorites_DataModel>()
+                .setQuery(query, Favorites_DataModel.class)
                 .build();
 
         favoritesFirestore = new FavoritesFirestore(options);
@@ -95,13 +95,13 @@ public class FavoritesFragment extends Fragment {
         favoritesFirestore.setOnItemClickListener(new FavoritesFirestore.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                final FavoritesClass favoritesClass = documentSnapshot.toObject(FavoritesClass.class);
+                final Favorites_DataModel favoritesDataModel = documentSnapshot.toObject(Favorites_DataModel.class);
                 String id = documentSnapshot.getId();
                 String path = documentSnapshot.getReference().getPath();
 
 
                 final Intent intent = new Intent(getContext(), ProfileActivity.class);
-                intent.putExtra("user_uid", favoritesClass.getUser_favorite());
+                intent.putExtra("user_uid", favoritesDataModel.getUser_favorite());
                 startActivity(intent);
             }
         });

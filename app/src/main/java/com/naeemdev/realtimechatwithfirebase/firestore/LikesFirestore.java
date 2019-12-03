@@ -21,8 +21,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.LikesClass;
-import com.naeemdev.realtimechatwithfirebase.model.ProfileClass;
+import com.naeemdev.realtimechatwithfirebase.model.Likes_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Profile_DataModel;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -31,18 +31,18 @@ import java.util.Date;
 import javax.annotation.Nullable;
 
 
-public class LikesFirestore extends FirestoreRecyclerAdapter<LikesClass, LikesFirestore.LikesHolder> {
+public class LikesFirestore extends FirestoreRecyclerAdapter<Likes_DataModel, LikesFirestore.LikesHolder> {
 
 
     private OnItemClickListener listener;
 
 
-    public LikesFirestore(@NonNull FirestoreRecyclerOptions<LikesClass> options) {
+    public LikesFirestore(@NonNull FirestoreRecyclerOptions<Likes_DataModel> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final LikesHolder holder, int position, @NonNull final LikesClass model) {
+    protected void onBindViewHolder(@NonNull final LikesHolder holder, int position, @NonNull final Likes_DataModel model) {
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -53,14 +53,14 @@ public class LikesFirestore extends FirestoreRecyclerAdapter<LikesClass, LikesFi
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         if (queryDocumentSnapshots != null) {
                             for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
-                                ProfileClass profileClass = doc.getDocument().toObject(ProfileClass.class);
-                                if (profileClass.getUser_uid().equals(model.getUser_likes())) {
-                                    holder.textViewLikesItemLikesName.setText(profileClass.getUser_name());
+                                Profile_DataModel profileDataModel = doc.getDocument().toObject(Profile_DataModel.class);
+                                if (profileDataModel.getUser_uid().equals(model.getUser_likes())) {
+                                    holder.textViewLikesItemLikesName.setText(profileDataModel.getUser_name());
 
-                                    if (profileClass.getUser_thumb().equals("thumb")) {
+                                    if (profileDataModel.getUser_thumb().equals("thumb")) {
                                         holder.roundedImageViewLikesItemLikesImage.setImageResource(R.drawable.profile_image);
                                     } else {
-                                        Picasso.get().load(profileClass.getUser_thumb()).into(holder.roundedImageViewLikesItemLikesImage);
+                                        Picasso.get().load(profileDataModel.getUser_thumb()).into(holder.roundedImageViewLikesItemLikesImage);
                                     }
                                 }
                             }

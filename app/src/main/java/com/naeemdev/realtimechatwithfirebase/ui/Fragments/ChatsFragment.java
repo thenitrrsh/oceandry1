@@ -22,7 +22,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.naeemdev.realtimechatwithfirebase.R;
 import com.naeemdev.realtimechatwithfirebase.firestore.ChatsFirestore;
-import com.naeemdev.realtimechatwithfirebase.model.MessageClass;
+import com.naeemdev.realtimechatwithfirebase.model.Message_DataModel;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.MessageActivity;
 
 
@@ -92,8 +92,8 @@ public class ChatsFragment extends Fragment {
                 .collection("chats")
                 .orderBy("user_datesent", Query.Direction.DESCENDING);
 
-        FirestoreRecyclerOptions<MessageClass> options = new FirestoreRecyclerOptions.Builder<MessageClass>()
-                .setQuery(query, MessageClass.class)
+        FirestoreRecyclerOptions<Message_DataModel> options = new FirestoreRecyclerOptions.Builder<Message_DataModel>()
+                .setQuery(query, Message_DataModel.class)
                 .build();
 
 
@@ -106,11 +106,11 @@ public class ChatsFragment extends Fragment {
         chatsFirestore.setOnItemClickListener(new ChatsFirestore.OnItemClickListener() {
             @Override
             public void onItemClick(DocumentSnapshot documentSnapshot, int position) {
-                final MessageClass messageClass = documentSnapshot.toObject(MessageClass.class);
+                final Message_DataModel messageDataModel = documentSnapshot.toObject(Message_DataModel.class);
                 String id = documentSnapshot.getId();
                 String path = documentSnapshot.getReference().getPath();
                 final Intent intent = new Intent(getContext(), MessageActivity.class);
-                intent.putExtra("user_uid", messageClass.getUser_receiver());
+                intent.putExtra("user_uid", messageDataModel.getUser_receiver());
                 startActivity(intent);
             }
         });

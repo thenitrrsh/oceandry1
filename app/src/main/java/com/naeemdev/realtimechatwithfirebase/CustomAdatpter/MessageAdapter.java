@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.ChatsClass;
+import com.naeemdev.realtimechatwithfirebase.model.Chats_DataModel;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.ProfileActivity;
 
 import java.util.ArrayList;
@@ -25,13 +25,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public static final int MSG_TYPE_LEFT = 0;
     public static final int MSG_TYPE_RIGHT = 1;
 
-    ArrayList<ChatsClass> arrayUsersClass;
+    ArrayList<Chats_DataModel> arrayUsersClass;
     Context context;
 
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
 
-    public MessageAdapter(ArrayList<ChatsClass> arrayUsersClass, Context context) {
+    public MessageAdapter(ArrayList<Chats_DataModel> arrayUsersClass, Context context) {
         this.arrayUsersClass = arrayUsersClass;
         this.context = context;
     }
@@ -60,7 +60,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder viewHolder, int i) {
 
 
-        ChatsClass userClass = arrayUsersClass.get(i);
+        Chats_DataModel userClass = arrayUsersClass.get(i);
         viewHolder.textViewChatMessage.setText(userClass.getChat_message());
 
         if (userClass.getChat_seenchat().equals("no")) {
@@ -97,10 +97,10 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         TextView textViewChatMessage;
         ImageView imageViewChatSent;
         ImageView imageViewChatSeen;
-        ArrayList<ChatsClass> intentUserClass = new ArrayList<ChatsClass>();
+        ArrayList<Chats_DataModel> intentUserClass = new ArrayList<Chats_DataModel>();
         Context context;
 
-        public ViewHolder(@NonNull View itemView, Context context, ArrayList<ChatsClass> intentUserClass) {
+        public ViewHolder(@NonNull View itemView, Context context, ArrayList<Chats_DataModel> intentUserClass) {
             super(itemView);
             this.intentUserClass = intentUserClass;
             this.context = context;
@@ -115,7 +115,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
         public void onClick(View v) {
 
             int position = getAdapterPosition();
-            ChatsClass intentUsersClass = this.intentUserClass.get(position);
+            Chats_DataModel intentUsersClass = this.intentUserClass.get(position);
 
             Intent intent = new Intent(this.context, ProfileActivity.class);
             intent.putExtra("user_message", intentUsersClass.getChat_message());

@@ -22,7 +22,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.FeedsClass;
+import com.naeemdev.realtimechatwithfirebase.model.Feeds_DataModel;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.ProfileActivity;
 import com.squareup.picasso.Picasso;
 
@@ -35,7 +35,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> {
 
-    ArrayList<FeedsClass> arrayFeedsClasses;
+    ArrayList<Feeds_DataModel> arrayFeedsDataModels;
     Context context;
 
     String user_keyz;
@@ -43,8 +43,8 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
 
-    public FeedsAdapter(ArrayList<FeedsClass> arrayFeedsClasses, Context context) {
-        this.arrayFeedsClasses = arrayFeedsClasses;
+    public FeedsAdapter(ArrayList<Feeds_DataModel> arrayFeedsDataModels, Context context) {
+        this.arrayFeedsDataModels = arrayFeedsDataModels;
         this.context = context;
     }
 
@@ -60,19 +60,19 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
         firebaseFirestore = FirebaseFirestore.getInstance();
 
 
-        return new ViewHolder(view, context, arrayFeedsClasses);
+        return new ViewHolder(view, context, arrayFeedsDataModels);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder viewHolder, int i) {
 
-        final FeedsClass feedsClass = arrayFeedsClasses.get(i);
+        final Feeds_DataModel feedsDataModel = arrayFeedsDataModels.get(i);
 
         String currentUser = firebaseUser.getUid();
 
         firebaseFirestore.collection("users")
-                .document(feedsClass.getFeed_user())
+                .document(feedsDataModel.getFeed_user())
                 .addSnapshotListener(new EventListener<DocumentSnapshot>() {
                     @Override
                     public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException e) {
@@ -86,15 +86,15 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
                 });
 
 
-        Picasso.get().load(feedsClass.getFeed_cover()).into(viewHolder.imageViewFeedsItemFeedsCover);
+        Picasso.get().load(feedsDataModel.getFeed_cover()).into(viewHolder.imageViewFeedsItemFeedsCover);
 
 
-        viewHolder.textViewFeedsItemFeedsLikes.setText(String.valueOf(feedsClass.getFeed_like()));
+        viewHolder.textViewFeedsItemFeedsLikes.setText(String.valueOf(feedsDataModel.getFeed_like()));
 
-        viewHolder.relativeTimeFeedsItemFeedsDate.setReferenceTime(feedsClass.feed_date.getTime());
+        viewHolder.relativeTimeFeedsItemFeedsDate.setReferenceTime(feedsDataModel.feed_date.getTime());
 
         firebaseFirestore.collection("feeds")
-                .document(feedsClass.getFeed_uid())
+                .document(feedsDataModel.getFeed_uid())
                 .collection("likes")
                 .document(currentUser)
                 .get()
@@ -112,19 +112,19 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
         viewHolder.imageViewFeedsItemFeedsLikes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FeedLike(viewHolder, viewHolder.imageViewFeedsItemFeedsLikes, viewHolder.textViewFeedsItemFeedsLikes, feedsClass);
+                FeedLike(viewHolder, viewHolder.imageViewFeedsItemFeedsLikes, viewHolder.textViewFeedsItemFeedsLikes, feedsDataModel);
             }
         });
 
     }
 
 
-    private void FeedLike(final ViewHolder viewHolder, ImageView imageView, TextView textView, final FeedsClass feedsClass) {
+    private void FeedLike(final ViewHolder viewHolder, ImageView imageView, TextView textView, final Feeds_DataModel feedsDataModel) {
 
         final String currentUser = firebaseUser.getUid();
 
         firebaseFirestore.collection("feeds")
-                .document(feedsClass.getFeed_uid())
+                .document(feedsDataModel.getFeed_uid())
                 .collection("likes")
                 .document(currentUser)
                 .get()
@@ -134,7 +134,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
                         if (task.getResult().exists()) {
 
                             firebaseFirestore.collection("feeds")
-                                    .document(feedsClass.getFeed_uid())
+                                    .document(feedsDataModel.getFeed_uid())
                                     .get()
                                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                         @Override
@@ -149,7 +149,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
                                                 hashMapUpdate.put("feed_like", addLikes);
 
                                                 firebaseFirestore.collection("feeds")
-                                                        .document(feedsClass.getFeed_uid())
+                                                        .document(feedsDataModel.getFeed_uid())
                                                         .update(hashMapUpdate)
                                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
@@ -157,7 +157,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
                                                                 if (task.isSuccessful()) {
 
                                                                     firebaseFirestore.collection("feeds")
-                                                                            .document(feedsClass.getFeed_uid())
+                                                                            .document(feedsDataModel.getFeed_uid())
                                                                             .collection("likes")
                                                                             .document(currentUser)
                                                                             .delete()
@@ -181,7 +181,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
 
                         } else {
                             firebaseFirestore.collection("feeds")
-                                    .document(feedsClass.getFeed_uid())
+                                    .document(feedsDataModel.getFeed_uid())
                                     .get()
                                     .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                                         @Override
@@ -196,7 +196,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
                                                 hashMapUpdate.put("feed_like", addLikes);
 
                                                 firebaseFirestore.collection("feeds")
-                                                        .document(feedsClass.getFeed_uid())
+                                                        .document(feedsDataModel.getFeed_uid())
                                                         .update(hashMapUpdate)
                                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                                                             @Override
@@ -208,7 +208,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
                                                                     hashMapUser.put("feed_like_date", Timestamp.now());
 
                                                                     firebaseFirestore.collection("feeds")
-                                                                            .document(feedsClass.getFeed_uid())
+                                                                            .document(feedsDataModel.getFeed_uid())
                                                                             .collection("likes")
                                                                             .document(currentUser)
                                                                             .set(hashMapUser)
@@ -238,7 +238,7 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return arrayFeedsClasses.size();
+        return arrayFeedsDataModels.size();
     }
 
     @Override
@@ -264,12 +264,12 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
         RelativeTimeTextView relativeTimeFeedsItemFeedsDate;
 
 
-        ArrayList<FeedsClass> intentFeedsClasses = new ArrayList<FeedsClass>();
+        ArrayList<Feeds_DataModel> intentFeedsDataModels = new ArrayList<Feeds_DataModel>();
         Context context;
 
-        public ViewHolder(@NonNull View itemView, Context context, ArrayList<FeedsClass> intentFeedsClasses) {
+        public ViewHolder(@NonNull View itemView, Context context, ArrayList<Feeds_DataModel> intentFeedsDataModels) {
             super(itemView);
-            this.intentFeedsClasses = intentFeedsClasses;
+            this.intentFeedsDataModels = intentFeedsDataModels;
             this.context = context;
             itemView.setOnClickListener(this);
 
@@ -290,10 +290,10 @@ public class FeedsAdapter extends RecyclerView.Adapter<FeedsAdapter.ViewHolder> 
         public void onClick(View v) {
 
             int position = getAdapterPosition();
-            FeedsClass intentFeedsClass = this.intentFeedsClasses.get(position);
+            Feeds_DataModel intentFeedsDataModel = this.intentFeedsDataModels.get(position);
 
             Intent intent = new Intent(this.context, ProfileActivity.class);
-            intent.putExtra("user_uid", intentFeedsClass.getFeed_user());
+            intent.putExtra("user_uid", intentFeedsDataModel.getFeed_user());
 
             this.context.startActivity(intent);
         }

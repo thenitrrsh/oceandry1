@@ -21,8 +21,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.MatchesClass;
-import com.naeemdev.realtimechatwithfirebase.model.ProfileClass;
+import com.naeemdev.realtimechatwithfirebase.model.Matches_DataModel;
+import com.naeemdev.realtimechatwithfirebase.model.Profile_DataModel;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
@@ -32,17 +32,17 @@ import javax.annotation.Nullable;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class MatchesFirestore extends FirestoreRecyclerAdapter<MatchesClass, MatchesFirestore.MatchesHolder> {
+public class MatchesFirestore extends FirestoreRecyclerAdapter<Matches_DataModel, MatchesFirestore.MatchesHolder> {
 
 
     private OnItemClickListener listener;
 
-    public MatchesFirestore(@NonNull FirestoreRecyclerOptions<MatchesClass> options) {
+    public MatchesFirestore(@NonNull FirestoreRecyclerOptions<Matches_DataModel> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull final MatchesHolder holder, int position, @NonNull final MatchesClass model) {
+    protected void onBindViewHolder(@NonNull final MatchesHolder holder, int position, @NonNull final Matches_DataModel model) {
 
         final FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         final FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -53,14 +53,14 @@ public class MatchesFirestore extends FirestoreRecyclerAdapter<MatchesClass, Mat
                     public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                         if (queryDocumentSnapshots != null) {
                             for (DocumentChange doc : queryDocumentSnapshots.getDocumentChanges()) {
-                                ProfileClass profileClass = doc.getDocument().toObject(ProfileClass.class);
-                                if (profileClass.getUser_uid().equals(model.getUser_matches())) {
-                                    holder.textViewMatchesItemMatchesName.setText(profileClass.getUser_name());
+                                Profile_DataModel profileDataModel = doc.getDocument().toObject(Profile_DataModel.class);
+                                if (profileDataModel.getUser_uid().equals(model.getUser_matches())) {
+                                    holder.textViewMatchesItemMatchesName.setText(profileDataModel.getUser_name());
 
-                                    if (profileClass.getUser_thumb().equals("thumb")) {
+                                    if (profileDataModel.getUser_thumb().equals("thumb")) {
                                         holder.roundedImageViewMatchesItemMatchesImage.setImageResource(R.drawable.profile_image);
                                     } else {
-                                        Picasso.get().load(profileClass.getUser_thumb()).into(holder.roundedImageViewMatchesItemMatchesImage);
+                                        Picasso.get().load(profileDataModel.getUser_thumb()).into(holder.roundedImageViewMatchesItemMatchesImage);
                                     }
                                 }
                             }

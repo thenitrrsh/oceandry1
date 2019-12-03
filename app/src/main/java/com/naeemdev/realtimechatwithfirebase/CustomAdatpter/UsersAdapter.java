@@ -16,7 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.ProfileClass;
+import com.naeemdev.realtimechatwithfirebase.model.Profile_DataModel;
 import com.naeemdev.realtimechatwithfirebase.ui.Activity.ProfileActivity;
 import com.squareup.picasso.Picasso;
 
@@ -28,14 +28,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
     String currentUser;
 
-    ArrayList<ProfileClass> arrayProfileClasses;
+    ArrayList<Profile_DataModel> arrayProfileDataModels;
     Context context;
 
     FirebaseUser firebaseUser;
     FirebaseFirestore firebaseFirestore;
 
-    public UsersAdapter(ArrayList<ProfileClass> arrayProfileClasses, Context context) {
-        this.arrayProfileClasses = arrayProfileClasses;
+    public UsersAdapter(ArrayList<Profile_DataModel> arrayProfileDataModels, Context context) {
+        this.arrayProfileDataModels = arrayProfileDataModels;
         this.context = context;
     }
 
@@ -52,14 +52,14 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         currentUser = firebaseUser.getUid();
 
 
-        return new ViewHolder(view, context, arrayProfileClasses);
+        return new ViewHolder(view, context, arrayProfileDataModels);
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull final UsersAdapter.ViewHolder viewHolder, int i) {
 
-        final ProfileClass userClass = arrayProfileClasses.get(i);
+        final Profile_DataModel userClass = arrayProfileDataModels.get(i);
 
         String userName = userClass.getUser_name();
         String[] splitUserNames = userName.split(" ");
@@ -146,7 +146,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return arrayProfileClasses.size();
+        return arrayProfileDataModels.size();
     }
 
     @Override
@@ -173,10 +173,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         CircleImageView circleImageViewUsersItemUsersOffline;
 
 
-        ArrayList<ProfileClass> intentUserClass = new ArrayList<ProfileClass>();
+        ArrayList<Profile_DataModel> intentUserClass = new ArrayList<Profile_DataModel>();
         Context context;
 
-        public ViewHolder(@NonNull View itemView, Context context, ArrayList<ProfileClass> intentUserClass) {
+        public ViewHolder(@NonNull View itemView, Context context, ArrayList<Profile_DataModel> intentUserClass) {
             super(itemView);
             this.intentUserClass = intentUserClass;
             this.context = context;
@@ -198,10 +198,10 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ViewHolder> 
         public void onClick(View v) {
 
             int position = getAdapterPosition();
-            ProfileClass intentProfileClass = this.intentUserClass.get(position);
+            Profile_DataModel intentProfileDataModel = this.intentUserClass.get(position);
 
             Intent intent = new Intent(this.context, ProfileActivity.class);
-            intent.putExtra("user_uid", intentProfileClass.getUser_uid());
+            intent.putExtra("user_uid", intentProfileDataModel.getUser_uid());
 
             this.context.startActivity(intent);
         }

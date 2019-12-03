@@ -2,7 +2,7 @@ package com.naeemdev.realtimechatwithfirebase.model;
 
 import java.util.Date;
 
-public class ChatsClass {
+public class Chats_DataModel {
 
     private Date chat_datesent;
     private Date chat_dateseen;
@@ -13,11 +13,11 @@ public class ChatsClass {
     private String delete_sender;
     private String delete_receiver;
 
-    public ChatsClass() {
+    public Chats_DataModel() {
 
     }
 
-    public ChatsClass(Date chat_datesent, Date chat_dateseen, String chat_sender, String chat_receiver, String chat_message, String chat_seenchat, String delete_sender, String delete_receiver) {
+    public Chats_DataModel(Date chat_datesent, Date chat_dateseen, String chat_sender, String chat_receiver, String chat_message, String chat_seenchat, String delete_sender, String delete_receiver) {
         this.chat_datesent = chat_datesent;
         this.chat_dateseen = chat_dateseen;
         this.chat_sender = chat_sender;
