@@ -16,7 +16,7 @@
     <string name="firstname">First Name</string>
     <string name="birthday">birthday</string>
     <string name="username">username</string>
-    <string name="location">location</string>
+    <string name="location">Location</string>
     <string name="setting">SETTINGS</string>
     <string name="account">ACCOUNT</string>
     <string name="profile">PROFILE</string>
@@ -60,6 +60,29 @@
     <string name="fav_empty">Favorites is empty</string>
     <string name="msg_fav">Users you mark as favorite will show up here. You can save your date here.</string>
     <string name="msg_matchempty">Get Matching</string>
+    <string name="showmeonline">Show Me Online</string>
+    <string name="matchedtoconnect">Match to Connect</string>
+    <string name="discovery">Discovery Settings</string>
+    <string name="agerand">Age Range</string>
+    <string name="_16">16</string>
+    <string name="_60">60</string>
+    <string name="gender">Gender</string>
+    <string name="any">Any</string>
+    <string name="mertailstatus">Marital Status</string>
+    <string name="seeking_for">Seeking for</string>
+    <string name="pravysetting">Privacy Settings</string>
+    <string name="pravicy">Privacy Settings</string>
+    <string name="notificationsetting">Notification Settings</string>
+    <string name="profilesetting">Profile Settings</string>
+    <string name="sharemyfeed">Share My Feeds</string>
+    <string name="showme">Show me</string>
+    <string name="legal">Legal</string>
+    <string name="pravicy_policy">Privacy Policy</string>
+    <string name="term">Terms of Service</string>
+    <string name="helpandsupport">Help and Support</string>
+    <string name="logout">Logout</string>
+    <string name="deleteaccount">Delete Account</string>
+
     <string-array name="string_array_user_report">
         <item>Fake Profile</item>
         <item>Inappropritae Photos</item>

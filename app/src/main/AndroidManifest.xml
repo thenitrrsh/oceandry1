@@ -18,7 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.Activity.ReportActivity"></activity>
+        <activity android:name=".ui.Activity.SupportActivity"></activity>
+        <activity android:name=".ui.Activity.NotificationActivity" />
+        <activity android:name=".ui.Activity.AccountActivity" />
+        <activity android:name=".ui.Activity.ReportActivity" />
         <activity android:name=".ui.Activity.ProfileEditActivity" />
         <activity android:name=".ui.Activity.SettingsActivity" />
         <activity android:name=".ui.Activity.ProfileActivity" />
@@ -58,7 +61,6 @@
         </activity>
 
         <service android:name=".service.ServiceClass" />
-
     </application>
 
 </manifest>
