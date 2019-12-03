@@ -103,6 +103,17 @@
     <string name="msg_howweimporve">How can we improve?</string>
     <string name="msg_youridea">Tell us your idea, error or suggestion</string>
     <string name="send">Send</string>
+    <string name="msg_report">Is this person bothering you? Choose the reasons for your report.</string>
+    <string name="msg_fakeprofile">Fake Profile</string>
+    <string name="msg_photo">Inappropritae Photos</string>
+    <string name="msg_spam">Feels Like Spam</string>
+    <string name="msg_adv">Advertising</string>
+    <string name="msg_sdultcontent">Adult Content</string>
+    <string name="msg_personal">Personal Offence</string>
+    <string name="msg_religious">Religious Comments</string>
+    <string name="msg_underage">User is Underage</string>
+    <string name="msg_otherreson">Other Reason</string>
+    <string name="repor">Report</string>
 
     <string-array name="string_array_user_report">
         <item>Fake Profile</item>
