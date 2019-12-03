@@ -52,6 +52,7 @@
     <string name="matchedmodeon">Match mode on! Swipe cards to connect with this user!</string>
     <string name="youhaveblacked">You have blocked this user!</string>
     <string name="unblockuser">You have unblocked this user!</string>
+    <string name="msg_didnotmatch">We couldn\'t find any match for you right now. Try again later.</string>
     <string-array name="string_array_user_report">
         <item>Fake Profile</item>
         <item>Inappropritae Photos</item>
