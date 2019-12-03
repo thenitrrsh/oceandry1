@@ -67,7 +67,7 @@
                 android:padding="@dimen/_20sdp"
                 android:text="Activity Settings"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_16ssp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -137,7 +137,7 @@
                 android:padding="@dimen/_20sdp"
                 android:text="@string/discovery"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_16ssp"
                 android:textStyle="bold" />
 
 
@@ -371,14 +371,6 @@
             </LinearLayout>
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_20sdp"
-                android:text="@string/pravysetting"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/_18ssp"
-                android:textStyle="bold" />
 
 
             <LinearLayout
@@ -407,7 +399,7 @@
                 android:padding="@dimen/_20sdp"
                 android:text="@string/profilesetting"
                 android:textColor="@color/colorBlack"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_16ssp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -472,57 +464,9 @@
             </LinearLayout>
 
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/_20sdp"
-                android:text="@string/legal"
-                android:textColor="@color/colorBlack"
-                android:textSize="@dimen/_18ssp"
-                android:textStyle="bold" />
 
 
-            <LinearLayout
-                android:id="@+id/linearLayoutSettingsPolicy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@color/colorWhite"
-                android:orientation="vertical"
-                android:padding="@dimen/_20sdp">
 
-                <TextView
-                    android:id="@+id/textViewSettingsPolicy"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/pravicy_policy"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/_14ssp"
-                    android:textStyle="bold" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/linearLayoutSettingsTerms"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:background="@color/colorWhite"
-                android:orientation="vertical"
-                android:padding="@dimen/_20sdp">
-
-                <TextView
-                    android:id="@+id/textViewSettingsTerms"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/term"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="@dimen/_14ssp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
 
 
             <LinearLayout

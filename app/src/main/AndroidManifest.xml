@@ -18,7 +18,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.Activity.SupportActivity"></activity>
+        <activity android:name=".ui.Activity.PasswordActivity"></activity>
+        <activity android:name=".ui.Activity.SupportActivity" />
         <activity android:name=".ui.Activity.NotificationActivity" />
         <activity android:name=".ui.Activity.AccountActivity" />
         <activity android:name=".ui.Activity.ReportActivity" />
