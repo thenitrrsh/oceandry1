@@ -55,6 +55,8 @@
     <string name="msg_didnotmatch">We couldn\'t find any match for you right now. Try again later.</string>
     <string name="likeisempty">Like is empty</string>
     <string name="msg_likes">Users who likes you will show up here. You can like them back.</string>
+    <string name="visitorbook">Visitors book</string>
+    <string name="msg_user">Users who visits your profile will show up here. You can see who is into you.</string>
     <string-array name="string_array_user_report">
         <item>Fake Profile</item>
         <item>Inappropritae Photos</item>
