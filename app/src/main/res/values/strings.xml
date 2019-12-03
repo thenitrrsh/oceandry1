@@ -82,6 +82,11 @@
     <string name="helpandsupport">Help and Support</string>
     <string name="logout">Logout</string>
     <string name="deleteaccount">Delete Account</string>
+    <string name="updatepwd">Update Password</string>
+    <string name="usestrongpwd">Use strong password to protect your account</string>
+    <string name="currentpwd">Current Password</string>
+    <string name="newpwd">Your New Password</string>
+    <string name="confirmpwd">Confirm Password</string>
 
     <string-array name="string_array_user_report">
         <item>Fake Profile</item>
