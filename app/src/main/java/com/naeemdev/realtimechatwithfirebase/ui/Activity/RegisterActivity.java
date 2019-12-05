@@ -43,7 +43,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.nabinbhandari.android.permissions.PermissionHandler;
 import com.nabinbhandari.android.permissions.Permissions;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.Date_DataModel;
+import com.naeemdev.realtimechatwithfirebase.ui.Fragments.DatePicker_Fragments;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -121,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity implements DatePickerDia
         textViewRegisterBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker = new Date_DataModel();
+                DialogFragment datePicker = new DatePicker_Fragments();
                 datePicker.show(getSupportFragmentManager(), "Date Picker");
 
             }

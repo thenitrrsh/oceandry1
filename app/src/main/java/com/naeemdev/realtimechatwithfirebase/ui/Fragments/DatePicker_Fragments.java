@@ -1,4 +1,4 @@
-package com.naeemdev.realtimechatwithfirebase.model;
+package com.naeemdev.realtimechatwithfirebase.ui.Fragments;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -12,7 +12,7 @@ import com.naeemdev.realtimechatwithfirebase.R;
 
 import java.util.Calendar;
 
-public class Date_DataModel extends DialogFragment {
+public class DatePicker_Fragments extends DialogFragment {
 
     @NonNull
     @Override

@@ -22,7 +22,7 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.naeemdev.realtimechatwithfirebase.R;
-import com.naeemdev.realtimechatwithfirebase.model.Date_DataModel;
+import com.naeemdev.realtimechatwithfirebase.ui.Fragments.DatePicker_Fragments;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -123,7 +123,7 @@ public class AccountActivity extends AppCompatActivity implements DatePickerDial
         linearLayoutAccountUserBirthday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment datePicker = new Date_DataModel();
+                DialogFragment datePicker = new DatePicker_Fragments();
                 datePicker.show(getSupportFragmentManager(), "Date Picker");
 
             }
